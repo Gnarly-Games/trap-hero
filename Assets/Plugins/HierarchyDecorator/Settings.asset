@@ -1,0 +1,1540 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00668fd727de9bb4081a8a202ce24c3b, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  globalData:
+    showActiveToggles: 1
+    showComponentIcons: 1
+    showAllComponents: 1
+    twoToneBackground: 1
+    showLayers: 1
+    editableLayers: 1
+    applyChildLayers: 1
+  styleData:
+    displayLayers: 1
+    displayIcons: 1
+    styles:
+    - prefix: =
+      name: Header (Centered)
+      font: {fileID: 0}
+      fontSize: 11
+      fontAlignment: 4
+      fontStyle: 1
+      modes:
+      - fontColour: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
+        backgroundColour: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
+      - fontColour: {r: 1, g: 1, b: 1, a: 1}
+        backgroundColour: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
+      style:
+        m_Name: Header (Centered)
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 11
+        m_FontStyle: 1
+        m_Alignment: 4
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+    - prefix: '-'
+      name: Subheader
+      font: {fileID: 0}
+      fontSize: 10
+      fontAlignment: 3
+      fontStyle: 1
+      modes:
+      - fontColour: {r: 0.245283, g: 0.245283, b: 0.245283, a: 1}
+        backgroundColour: {r: 0.7960785, g: 0.7960785, b: 0.7960785, a: 1}
+      - fontColour: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+        backgroundColour: {r: 0.2352941, g: 0.2352941, b: 0.2352941, a: 1}
+      style:
+        m_Name: Subheader
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 10
+        m_FontStyle: 1
+        m_Alignment: 3
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+    - prefix: +
+      name: Mini Header (Centered)
+      font: {fileID: 0}
+      fontSize: 10
+      fontAlignment: 4
+      fontStyle: 1
+      modes:
+      - fontColour: {r: 1, g: 1, b: 1, a: 1}
+        backgroundColour: {r: 0.38568, g: 0.6335747, b: 0.764151, a: 1}
+      - fontColour: {r: 1, g: 1, b: 1, a: 1}
+        backgroundColour: {r: 0.2671325, g: 0.4473481, b: 0.6509434, a: 1}
+      style:
+        m_Name: Mini Header (Centered)
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 10
+        m_FontStyle: 1
+        m_Alignment: 4
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+  componentData:
+    showMissingScriptsWarning: 0
+    unityComponents:
+    - name: NavMeshAgent
+      shown: 0
+    - name: NavMeshObstacle
+      shown: 0
+    - name: OffMeshLink
+      shown: 0
+    - name: Animator
+      shown: 0
+    - name: Animation
+      shown: 0
+    - name: AimConstraint
+      shown: 0
+    - name: PositionConstraint
+      shown: 0
+    - name: RotationConstraint
+      shown: 0
+    - name: ScaleConstraint
+      shown: 0
+    - name: LookAtConstraint
+      shown: 0
+    - name: ParentConstraint
+      shown: 0
+    - name: AudioSource
+      shown: 0
+    - name: AudioLowPassFilter
+      shown: 0
+    - name: AudioHighPassFilter
+      shown: 0
+    - name: AudioReverbFilter
+      shown: 0
+    - name: AudioBehaviour
+      shown: 0
+    - name: AudioListener
+      shown: 0
+    - name: AudioReverbZone
+      shown: 0
+    - name: AudioDistortionFilter
+      shown: 0
+    - name: AudioEchoFilter
+      shown: 0
+    - name: AudioChorusFilter
+      shown: 0
+    - name: Cloth
+      shown: 0
+    - name: Camera
+      shown: 0
+    - name: FlareLayer
+      shown: 0
+    - name: ReflectionProbe
+      shown: 0
+    - name: BillboardRenderer
+      shown: 0
+    - name: Renderer
+      shown: 0
+    - name: Projector
+      shown: 0
+    - name: TrailRenderer
+      shown: 0
+    - name: LineRenderer
+      shown: 0
+    - name: OcclusionPortal
+      shown: 0
+    - name: OcclusionArea
+      shown: 0
+    - name: LensFlare
+      shown: 0
+    - name: Light
+      shown: 0
+    - name: Skybox
+      shown: 0
+    - name: MeshFilter
+      shown: 0
+    - name: Halo
+      shown: 0
+    - name: LightProbeProxyVolume
+      shown: 0
+    - name: SkinnedMeshRenderer
+      shown: 0
+    - name: MeshRenderer
+      shown: 0
+    - name: LightProbeGroup
+      shown: 0
+    - name: LODGroup
+      shown: 0
+    - name: NetworkView
+      shown: 0
+    - name: Behaviour
+      shown: 0
+    - name: MonoBehaviour
+      shown: 0
+    - name: RectTransform
+      shown: 0
+    - name: Transform
+      shown: 0
+    - name: SpriteRenderer
+      shown: 0
+    - name: Light2DBase
+      shown: 0
+    - name: SortingGroup
+      shown: 0
+    - name: PlayableDirector
+      shown: 0
+    - name: Grid
+      shown: 0
+    - name: GridLayout
+      shown: 0
+    - name: ParticleSystem
+      shown: 0
+    - name: ParticleSystemRenderer
+      shown: 0
+    - name: ParticleSystemForceField
+      shown: 0
+    - name: ArticulationBody
+      shown: 0
+    - name: Rigidbody
+      shown: 0
+    - name: Collider
+      shown: 0
+    - name: CharacterController
+      shown: 0
+    - name: MeshCollider
+      shown: 0
+    - name: CapsuleCollider
+      shown: 0
+    - name: BoxCollider
+      shown: 0
+    - name: SphereCollider
+      shown: 0
+    - name: ConstantForce
+      shown: 0
+    - name: Joint
+      shown: 0
+    - name: HingeJoint
+      shown: 0
+    - name: SpringJoint
+      shown: 0
+    - name: FixedJoint
+      shown: 0
+    - name: CharacterJoint
+      shown: 0
+    - name: ConfigurableJoint
+      shown: 0
+    - name: Rigidbody2D
+      shown: 0
+    - name: Collider2D
+      shown: 0
+    - name: CustomCollider2D
+      shown: 0
+    - name: CircleCollider2D
+      shown: 0
+    - name: CapsuleCollider2D
+      shown: 0
+    - name: EdgeCollider2D
+      shown: 0
+    - name: BoxCollider2D
+      shown: 0
+    - name: PolygonCollider2D
+      shown: 0
+    - name: CompositeCollider2D
+      shown: 0
+    - name: Joint2D
+      shown: 0
+    - name: AnchoredJoint2D
+      shown: 0
+    - name: SpringJoint2D
+      shown: 0
+    - name: DistanceJoint2D
+      shown: 0
+    - name: FrictionJoint2D
+      shown: 0
+    - name: HingeJoint2D
+      shown: 0
+    - name: RelativeJoint2D
+      shown: 0
+    - name: SliderJoint2D
+      shown: 0
+    - name: TargetJoint2D
+      shown: 0
+    - name: FixedJoint2D
+      shown: 0
+    - name: WheelJoint2D
+      shown: 0
+    - name: Effector2D
+      shown: 0
+    - name: AreaEffector2D
+      shown: 0
+    - name: BuoyancyEffector2D
+      shown: 0
+    - name: PointEffector2D
+      shown: 0
+    - name: PlatformEffector2D
+      shown: 0
+    - name: SurfaceEffector2D
+      shown: 0
+    - name: PhysicsUpdateBehaviour2D
+      shown: 0
+    - name: ConstantForce2D
+      shown: 0
+    - name: SpriteMask
+      shown: 0
+    - name: SpriteShapeRenderer
+      shown: 0
+    - name: StreamingController
+      shown: 0
+    - name: Terrain
+      shown: 0
+    - name: Tree
+      shown: 0
+    - name: TerrainCollider
+      shown: 0
+    - name: TextMesh
+      shown: 0
+    - name: Tilemap
+      shown: 0
+    - name: TilemapRenderer
+      shown: 0
+    - name: TilemapCollider2D
+      shown: 0
+    - name: CanvasGroup
+      shown: 0
+    - name: CanvasRenderer
+      shown: 0
+    - name: Canvas
+      shown: 0
+    - name: UIDocument
+      shown: 0
+    - name: NetworkMatch
+      shown: 0
+    - name: VisualEffect
+      shown: 0
+    - name: VFXRenderer
+      shown: 0
+    - name: WheelCollider
+      shown: 0
+    - name: VideoPlayer
+      shown: 0
+    - name: WindZone
+      shown: 0
+    - name: DemoBall
+      shown: 0
+    - name: DemoButton
+      shown: 0
+    - name: DemoGhost
+      shown: 0
+    - name: DemoPackageTester
+      shown: 0
+    - name: JoystickMovementMechanic
+      shown: 0
+    - name: Mechanic
+      shown: 0
+    - name: SwerveMechanic
+      shown: 0
+    - name: CanvasFixer
+      shown: 0
+    - name: PoolManager
+      shown: 0
+    - name: PoolObject
+      shown: 0
+    - name: CooldownHandler
+      shown: 0
+    - name: GameManager
+      shown: 0
+    - name: Level
+      shown: 0
+    - name: LevelHandler
+      shown: 0
+    - name: MechanicManager
+      shown: 0
+    - name: SaveLoadManager
+      shown: 0
+    - name: UIManager
+      shown: 0
+    - name: VibrationHandler
+      shown: 0
+    - name: JoystickMovementHandler
+      shown: 0
+    - name: _FrameRequestComponent
+      shown: 0
+    - name: RecorderComponent
+      shown: 0
+    - name: WaitForEndOfFrameComponent
+      shown: 0
+    - name: TCP2_Demo_InvertedMaskImage
+      shown: 0
+    - name: TCP2_Demo_AutoRotate
+      shown: 0
+    - name: TCP2_Demo_Interactive_Content
+      shown: 0
+    - name: TCP2_Demo_Camera
+      shown: 0
+    - name: TCP2_Demo_Cat
+      shown: 0
+    - name: TCP2_Demo_GammaLinear
+      shown: 0
+    - name: TCP2_Demo_Interactive
+      shown: 0
+    - name: TCP2_Demo_Interactive_Environment
+      shown: 0
+    - name: TCP2_Demo
+      shown: 0
+    - name: TCP2_Demo_PBS
+      shown: 0
+    - name: TCP2_Demo_PBS_View
+      shown: 0
+    - name: TCP2_Demo_View
+      shown: 0
+    - name: MMMeshToPolygonCollider2D
+      shown: 0
+    - name: MMCleanEmptyFolders
+      shown: 0
+    - name: MMCleanupMissingScripts
+      shown: 0
+    - name: MMLockInspector
+      shown: 0
+    - name: PixelPerfectCamera
+      shown: 0
+    - name: CinemachineUniversalPixelPerfect
+      shown: 0
+    - name: Light2D
+      shown: 0
+    - name: CompositeShadowCaster2D
+      shown: 0
+    - name: ShadowCaster2D
+      shown: 0
+    - name: ShadowCasterGroup2D
+      shown: 0
+    - name: DecalProjector
+      shown: 0
+    - name: UniversalAdditionalCameraData
+      shown: 0
+    - name: UniversalAdditionalLightData
+      shown: 0
+    - name: ExampleScript
+      shown: 0
+    - name: ExampleScript2
+      shown: 0
+    - name: ExampleScriptWithIcon
+      shown: 0
+    - name: MMFeedbackTMPCharacterSpacing
+      shown: 0
+    - name: MMFeedbackTMPColor
+      shown: 0
+    - name: MMFeedbackTMPDilate
+      shown: 0
+    - name: MMFeedbackTMPFontSize
+      shown: 0
+    - name: MMFeedbackTMPLineSpacing
+      shown: 0
+    - name: MMFeedbackTMPOutlineColor
+      shown: 0
+    - name: MMFeedbackTMPOutlineWidth
+      shown: 0
+    - name: MMFeedbackTMPParagraphSpacing
+      shown: 0
+    - name: MMFeedbackTMPSoftness
+      shown: 0
+    - name: MMFeedbackTMPText
+      shown: 0
+    - name: MMFeedbackTMPTextReveal
+      shown: 0
+    - name: MMFeedbackTMPWordSpacing
+      shown: 0
+    - name: PlaymodeTestsController
+      shown: 0
+    - name: PlayerQuitHandler
+      shown: 0
+    - name: PlayModeRunnerCallback
+      shown: 0
+    - name: RemoteTestResultSender
+      shown: 0
+    - name: TestResultRendererCallback
+      shown: 0
+    - name: SignalReceiver
+      shown: 0
+    - name: TextContainer
+      shown: 0
+    - name: TextMeshPro
+      shown: 0
+    - name: TextMeshProUGUI
+      shown: 0
+    - name: TMP_Dropdown
+      shown: 0
+    - name: TMP_InputField
+      shown: 0
+    - name: TMP_ScrollbarEventHandler
+      shown: 0
+    - name: TMP_SelectionCaret
+      shown: 0
+    - name: TMP_SpriteAnimator
+      shown: 0
+    - name: TMP_SubMesh
+      shown: 0
+    - name: TMP_SubMeshUI
+      shown: 0
+    - name: TMP_Text
+      shown: 0
+    - name: DropdownItem
+      shown: 0
+    - name: MMVibrationManagerTester
+      shown: 0
+    - name: MMCameraZoom
+      shown: 0
+    - name: MMFeedback
+      shown: 0
+    - name: MMFeedbacks
+      shown: 0
+    - name: MMFeedbacksHelpers
+      shown: 0
+    - name: MMFeedbacksInspectorColors
+      shown: 0
+    - name: MMShaker
+      shown: 0
+    - name: MMMiniObjectPooler
+      shown: 0
+    - name: MMMiniObjectPool
+      shown: 0
+    - name: MMMiniPoolableObject
+      shown: 0
+    - name: MMFeedbackAnimation
+      shown: 0
+    - name: MMFeedbackAudioFilterDistortion
+      shown: 0
+    - name: MMFeedbackAudioFilterEcho
+      shown: 0
+    - name: MMFeedbackAudioFilterHighPass
+      shown: 0
+    - name: MMFeedbackAudioFilterLowPass
+      shown: 0
+    - name: MMFeedbackAudioFilterReverb
+      shown: 0
+    - name: MMFeedbackAudioMixerSnapshotTransition
+      shown: 0
+    - name: MMFeedbackAudioSource
+      shown: 0
+    - name: MMFeedbackAudioSourcePitch
+      shown: 0
+    - name: MMFeedbackAudioSourceStereoPan
+      shown: 0
+    - name: MMFeedbackAudioSourceVolume
+      shown: 0
+    - name: MMFeedbackCameraClippingPlanes
+      shown: 0
+    - name: MMFeedbackCameraFieldOfView
+      shown: 0
+    - name: MMFeedbackCameraOrthographicSize
+      shown: 0
+    - name: MMFeedbackCameraShake
+      shown: 0
+    - name: MMFeedbackCameraZoom
+      shown: 0
+    - name: MMFeedbackCanvasGroupBlocksRaycasts
+      shown: 0
+    - name: MMFeedbackDestinationTransform
+      shown: 0
+    - name: MMFeedbackDestroy
+      shown: 0
+    - name: MMFeedbackEnable
+      shown: 0
+    - name: MMFeedbackEvents
+      shown: 0
+    - name: MMFeedbackFeedbacks
+      shown: 0
+    - name: MMFeedbackFlash
+      shown: 0
+    - name: MMFeedbackFlicker
+      shown: 0
+    - name: MMFeedbackFreezeFrame
+      shown: 0
+    - name: MMFeedbackHoldingPause
+      shown: 0
+    - name: MMFeedbackImage
+      shown: 0
+    - name: MMFeedbackImageRaycastTarget
+      shown: 0
+    - name: MMFeedbackInstantiateObject
+      shown: 0
+    - name: MMFeedbackLight
+      shown: 0
+    - name: MMFeedbackLooper
+      shown: 0
+    - name: MMFeedbackLooperStart
+      shown: 0
+    - name: MMFeedbackMaterial
+      shown: 0
+    - name: MMFeedbackParticles
+      shown: 0
+    - name: MMFeedbackParticlesInstantiation
+      shown: 0
+    - name: MMFeedbackPause
+      shown: 0
+    - name: MMFeedbackPosition
+      shown: 0
+    - name: MMFeedbackRigidbody
+      shown: 0
+    - name: MMFeedbackRigidbody2D
+      shown: 0
+    - name: MMFeedbackRotation
+      shown: 0
+    - name: MMFeedbackScale
+      shown: 0
+    - name: MMFeedbackSetActive
+      shown: 0
+    - name: MMFeedbackSkybox
+      shown: 0
+    - name: MMFeedbackSpriteRenderer
+      shown: 0
+    - name: MMFeedbackText
+      shown: 0
+    - name: MMFeedbackTextColor
+      shown: 0
+    - name: MMFeedbackTextureOffset
+      shown: 0
+    - name: MMFeedbackTextureScale
+      shown: 0
+    - name: MMFeedbackTimescaleModifier
+      shown: 0
+    - name: MMFeedbackUnloadScene
+      shown: 0
+    - name: MMFeedbackWiggle
+      shown: 0
+    - name: MMBlink
+      shown: 0
+    - name: MMAudioSourceSequencer
+      shown: 0
+    - name: MMFeedbacksSequencer
+      shown: 0
+    - name: MMInputSequenceRecorder
+      shown: 0
+    - name: MMSequencer
+      shown: 0
+    - name: MMSoundSequencer
+      shown: 0
+    - name: MMAudioFilterDistortionShaker
+      shown: 0
+    - name: MMAudioFilterEchoShaker
+      shown: 0
+    - name: MMAudioFilterHighPassShaker
+      shown: 0
+    - name: MMAudioFilterLowPassShaker
+      shown: 0
+    - name: MMAudioFilterReverbShaker
+      shown: 0
+    - name: MMAudioSourcePitchShaker
+      shown: 0
+    - name: MMAudioSourceStereoPanShaker
+      shown: 0
+    - name: MMAudioSourceVolumeShaker
+      shown: 0
+    - name: MMCameraClippingPlanesShaker
+      shown: 0
+    - name: MMCameraFieldOfViewShaker
+      shown: 0
+    - name: MMCameraOrthographicSizeShaker
+      shown: 0
+    - name: MMCameraShaker
+      shown: 0
+    - name: MMFeedbacksShaker
+      shown: 0
+    - name: MMFlash
+      shown: 0
+    - name: MMLightShaker
+      shown: 0
+    - name: MMSpriteRendererShaker
+      shown: 0
+    - name: MMTimeManager
+      shown: 0
+    - name: MMWiggle
+      shown: 0
+    - name: MMFeedbackBloom_URP
+      shown: 0
+    - name: MMFeedbackChannelMixer_URP
+      shown: 0
+    - name: MMFeedbackChromaticAberration_URP
+      shown: 0
+    - name: MMFeedbackColorAdjustments_URP
+      shown: 0
+    - name: MMFeedbackDepthOfField_URP
+      shown: 0
+    - name: MMFeedbackFilmGrain_URP
+      shown: 0
+    - name: MMFeedbackGlobalPPVolumeAutoBlend_URP
+      shown: 0
+    - name: MMFeedbackLensDistortion_URP
+      shown: 0
+    - name: MMFeedbackMotionBlur_URP
+      shown: 0
+    - name: MMFeedbackPaniniProjection_URP
+      shown: 0
+    - name: MMFeedbackVignette_URP
+      shown: 0
+    - name: MMFeedbackWhiteBalance_URP
+      shown: 0
+    - name: MMGlobalPostProcessingVolumeAutoBlend_URP
+      shown: 0
+    - name: MMAutoFocus_URP
+      shown: 0
+    - name: MMBloomShaker_URP
+      shown: 0
+    - name: MMChannelMixerShaker_URP
+      shown: 0
+    - name: MMChromaticAberrationShaker_URP
+      shown: 0
+    - name: MMColorAdjustmentsShaker_URP
+      shown: 0
+    - name: MMDepthOfFieldShaker_URP
+      shown: 0
+    - name: MMFilmGrainShaker_URP
+      shown: 0
+    - name: MMLensDistortionShaker_URP
+      shown: 0
+    - name: MMMotionBlurShaker_URP
+      shown: 0
+    - name: MMPaniniProjectionShaker_URP
+      shown: 0
+    - name: MMVignetteShaker_URP
+      shown: 0
+    - name: MMWhiteBalanceShaker_URP
+      shown: 0
+    - name: Button
+      shown: 0
+    - name: Dropdown
+      shown: 0
+    - name: Graphic
+      shown: 0
+    - name: GraphicRaycaster
+      shown: 0
+    - name: Image
+      shown: 0
+    - name: InputField
+      shown: 0
+    - name: AspectRatioFitter
+      shown: 0
+    - name: CanvasScaler
+      shown: 0
+    - name: ContentSizeFitter
+      shown: 0
+    - name: GridLayoutGroup
+      shown: 0
+    - name: HorizontalLayoutGroup
+      shown: 0
+    - name: HorizontalOrVerticalLayoutGroup
+      shown: 0
+    - name: LayoutElement
+      shown: 0
+    - name: LayoutGroup
+      shown: 0
+    - name: VerticalLayoutGroup
+      shown: 0
+    - name: Mask
+      shown: 0
+    - name: MaskableGraphic
+      shown: 0
+    - name: RawImage
+      shown: 0
+    - name: RectMask2D
+      shown: 0
+    - name: Scrollbar
+      shown: 0
+    - name: ScrollRect
+      shown: 0
+    - name: Selectable
+      shown: 0
+    - name: Slider
+      shown: 0
+    - name: Text
+      shown: 0
+    - name: Toggle
+      shown: 0
+    - name: ToggleGroup
+      shown: 0
+    - name: BaseMeshEffect
+      shown: 0
+    - name: Outline
+      shown: 0
+    - name: PositionAsUV1
+      shown: 0
+    - name: Shadow
+      shown: 0
+    - name: PanelEventHandler
+      shown: 0
+    - name: PanelRaycaster
+      shown: 0
+    - name: EventSystem
+      shown: 0
+    - name: EventTrigger
+      shown: 0
+    - name: BaseInput
+      shown: 0
+    - name: BaseInputModule
+      shown: 0
+    - name: PointerInputModule
+      shown: 0
+    - name: StandaloneInputModule
+      shown: 0
+    - name: TouchInputModule
+      shown: 0
+    - name: BaseRaycaster
+      shown: 0
+    - name: Physics2DRaycaster
+      shown: 0
+    - name: PhysicsRaycaster
+      shown: 0
+    - name: UIBehaviour
+      shown: 0
+    - name: DropdownItem
+      shown: 0
+    - name: SceneRenderPipeline
+      shown: 0
+    - name: LightAnchor
+      shown: 0
+    - name: ProbeVolume
+      shown: 0
+    - name: ProbeVolumePerSceneData
+      shown: 0
+    - name: CameraSwitcher
+      shown: 0
+    - name: FreeCamera
+      shown: 0
+    - name: DebugUpdater
+      shown: 0
+    - name: LensFlareComponentSRP
+      shown: 0
+    - name: Volume
+      shown: 0
+    - name: DebugUIHandlerBitField
+      shown: 0
+    - name: DebugUIHandlerButton
+      shown: 0
+    - name: DebugUIHandlerCanvas
+      shown: 0
+    - name: DebugUIHandlerColor
+      shown: 0
+    - name: DebugUIHandlerContainer
+      shown: 0
+    - name: DebugUIHandlerEnumField
+      shown: 0
+    - name: DebugUIHandlerEnumHistory
+      shown: 0
+    - name: DebugUIHandlerFloatField
+      shown: 0
+    - name: DebugUIHandlerFoldout
+      shown: 0
+    - name: DebugUIHandlerGroup
+      shown: 0
+    - name: DebugUIHandlerHBox
+      shown: 0
+    - name: DebugUIHandlerIndirectFloatField
+      shown: 0
+    - name: DebugUIHandlerIndirectToggle
+      shown: 0
+    - name: DebugUIHandlerIntField
+      shown: 0
+    - name: DebugUIHandlerMessageBox
+      shown: 0
+    - name: DebugUIHandlerPanel
+      shown: 0
+    - name: DebugUIHandlerPersistentCanvas
+      shown: 0
+    - name: DebugUIHandlerRow
+      shown: 0
+    - name: DebugUIHandlerToggle
+      shown: 0
+    - name: DebugUIHandlerToggleHistory
+      shown: 0
+    - name: DebugUIHandlerUIntField
+      shown: 0
+    - name: DebugUIHandlerValue
+      shown: 0
+    - name: DebugUIHandlerVBox
+      shown: 0
+    - name: DebugUIHandlerVector2
+      shown: 0
+    - name: DebugUIHandlerVector3
+      shown: 0
+    - name: DebugUIHandlerVector4
+      shown: 0
+    - name: DebugUIHandlerWidget
+      shown: 0
+    - name: UIFoldout
+      shown: 0
+    - name: GameViewEventCatcher
+      shown: 0
+    - name: PresetDemoManager
+      shown: 0
+    - name: PresetDemoRotator
+      shown: 0
+    - name: BallDemoBall
+      shown: 0
+    - name: BallDemoManager
+      shown: 0
+    - name: BallDemoWall
+      shown: 0
+    - name: BallPusher
+      shown: 0
+    - name: BallTouchZone
+      shown: 0
+    - name: CarDemoManager
+      shown: 0
+    - name: PowerBarElement
+      shown: 0
+    - name: ContinuousHapticsDemoManager
+      shown: 0
+    - name: RegularPresetsDemoManager
+      shown: 0
+    - name: TransientHapticsDemoManager
+      shown: 0
+    - name: WobbleButton
+      shown: 0
+    - name: WobbleDemoManager
+      shown: 0
+    - name: DemoManager
+      shown: 0
+    - name: SoundSwitch
+      shown: 0
+    - name: HapticCurve
+      shown: 0
+    - name: MMFPSCounter
+      shown: 0
+    - name: MMFPSUnlock
+      shown: 0
+    - name: MMKnob
+      shown: 0
+    - name: MMProgressBar
+      shown: 0
+    - name: MMSignal
+      shown: 0
+    - name: MMSpriteReplace
+      shown: 0
+    - name: MMSwitch
+      shown: 0
+    - name: MMTouchButton
+      shown: 0
+    - name: MMUIShaker
+      shown: 0
+    - name: Pagination
+      shown: 0
+    - name: V2DemoManager
+      shown: 0
+    - name: VersionNumber
+      shown: 0
+    - name: NiceVibrationsDemoManager
+      shown: 0
+    - name: FPSCounter
+      shown: 0
+    - name: ActiveStateOnStart
+      shown: 0
+    - name: Billboard
+      shown: 0
+    - name: ColliderGizmo
+      shown: 0
+    - name: ColliderToMesh
+      shown: 0
+    - name: GuidComponent
+      shown: 0
+    - name: Singleton`1
+      shown: 0
+    - name: UIFollow
+      shown: 0
+    - name: UIImageBasedButton
+      shown: 0
+    - name: UIRelativePosition
+      shown: 0
+    - name: UISizeBy
+      shown: 0
+    - name: CoroutineOwner
+      shown: 0
+    - name: CommentaryComponent
+      shown: 0
+    - name: MMFloatingTextMeshPro
+      shown: 0
+    - name: MMFeedbackHaptics
+      shown: 0
+    - name: TCP2_CameraDepth
+      shown: 0
+    - name: TCP2_GetPosOnWater
+      shown: 0
+    - name: TCP2_PlanarReflection
+      shown: 0
+    - name: TCP2_ShaderUpdateUnityTime
+      shown: 0
+    - name: MMAchievementDisplayer
+      shown: 0
+    - name: MMGhostCamera
+      shown: 0
+    - name: MMAutoRotate
+      shown: 0
+    - name: MMFeedbackBlink
+      shown: 0
+    - name: MMFeedbackCanvasGroup
+      shown: 0
+    - name: MMFeedbackDebugComment
+      shown: 0
+    - name: MMFeedbackDebugLog
+      shown: 0
+    - name: MMFeedbackFade
+      shown: 0
+    - name: MMFeedbackFloatController
+      shown: 0
+    - name: MMFeedbackFloatingText
+      shown: 0
+    - name: MMFeedbackFog
+      shown: 0
+    - name: MMFeedbackLoadScene
+      shown: 0
+    - name: MMFeedbackMMSoundManagerAllSoundsControl
+      shown: 0
+    - name: MMFeedbackMMSoundManagerSaveLoad
+      shown: 0
+    - name: MMFeedbackMMSoundManagerSound
+      shown: 0
+    - name: MMFeedbackMMSoundManagerSoundControl
+      shown: 0
+    - name: MMFeedbackMMSoundManagerSoundFade
+      shown: 0
+    - name: MMFeedbackMMSoundManagerTrackControl
+      shown: 0
+    - name: MMFeedbackMMSoundManagerTrackFade
+      shown: 0
+    - name: MMFeedbackPPMovingFilter
+      shown: 0
+    - name: MMFeedbackRectTransformAnchor
+      shown: 0
+    - name: MMFeedbackRectTransformOffset
+      shown: 0
+    - name: MMFeedbackRectTransformPivot
+      shown: 0
+    - name: MMFeedbackRectTransformSizeDelta
+      shown: 0
+    - name: MMFeedbackShaderController
+      shown: 0
+    - name: MMFeedbackSound
+      shown: 0
+    - name: MMFeedbackTextFontSize
+      shown: 0
+    - name: MMFeedbackBase
+      shown: 0
+    - name: MMFeedbackBroadcast
+      shown: 0
+    - name: MMFeedbackProperty
+      shown: 0
+    - name: MMFeedbackRadioSignal
+      shown: 0
+    - name: MMAchievementDisplayItem
+      shown: 0
+    - name: MMAchievementRules
+      shown: 0
+    - name: MMActivationOnStart
+      shown: 0
+    - name: MMApplicationPlatformActivation
+      shown: 0
+    - name: MMAutoExecution
+      shown: 0
+    - name: MMConditionalActivation
+      shown: 0
+    - name: MMInputExecution
+      shown: 0
+    - name: MMParentingOnStart
+      shown: 0
+    - name: MMPlatformActivation
+      shown: 0
+    - name: MMTimedActivation
+      shown: 0
+    - name: MMTimedDestruction
+      shown: 0
+    - name: MMToggleActive
+      shown: 0
+    - name: MMTriggerAndCollision
+      shown: 0
+    - name: AIAction
+      shown: 0
+    - name: AIBrain
+      shown: 0
+    - name: AIDecision
+      shown: 0
+    - name: MMAnimationParameter
+      shown: 0
+    - name: MMAnimatorMirror
+      shown: 0
+    - name: MMOffsetAnimation
+      shown: 0
+    - name: MMRagdoller
+      shown: 0
+    - name: MMRagdollerIgnore
+      shown: 0
+    - name: MMStopMotionAnimation
+      shown: 0
+    - name: MMMonoBehaviour
+      shown: 0
+    - name: MMAudioAnalyzer
+      shown: 0
+    - name: MMAudioListener
+      shown: 0
+    - name: MMSoundManager
+      shown: 0
+    - name: MMPlaylist
+      shown: 0
+    - name: MMPlaylistRemote
+      shown: 0
+    - name: MMAspectRatioSafeZones
+      shown: 0
+    - name: MMBillboard
+      shown: 0
+    - name: MMCameraAspectRatio
+      shown: 0
+    - name: MMOrbitalCamera
+      shown: 0
+    - name: MMPostProcessingMovingFilter
+      shown: 0
+    - name: MMViewportEdgeTeleporter
+      shown: 0
+    - name: MMControlsTestInputManager
+      shown: 0
+    - name: MMSwipeZone
+      shown: 0
+    - name: MMTouchAxis
+      shown: 0
+    - name: MMTouchButton
+      shown: 0
+    - name: MMTouchControls
+      shown: 0
+    - name: MMTouchDynamicJoystick
+      shown: 0
+    - name: MMTouchJoystick
+      shown: 0
+    - name: MMTouchRepositionableJoystick
+      shown: 0
+    - name: MMDebugMenuTestClass
+      shown: 0
+    - name: MMDebugMenuCommands
+      shown: 0
+    - name: MMDebugMenuButtonEventListener
+      shown: 0
+    - name: MMDebugMenuCheckboxEventListener
+      shown: 0
+    - name: MMDebugMenuSliderEventListener
+      shown: 0
+    - name: MMDebugMenu
+      shown: 0
+    - name: MMDebugMenuItemButton
+      shown: 0
+    - name: MMDebugMenuItemCheckbox
+      shown: 0
+    - name: MMDebugMenuItemChoices
+      shown: 0
+    - name: MMDebugMenuItemSlider
+      shown: 0
+    - name: MMDebugMenuItemText
+      shown: 0
+    - name: MMDebugMenuItemTitle
+      shown: 0
+    - name: MMDebugMenuItemValue
+      shown: 0
+    - name: MMDebugTouchDisplay
+      shown: 0
+    - name: MMDebugMenuDebugTab
+      shown: 0
+    - name: MMDebugMenuTab
+      shown: 0
+    - name: MMDebugMenuTabContents
+      shown: 0
+    - name: MMDebugMenuTabManager
+      shown: 0
+    - name: MMDebugMenuRadioButton
+      shown: 0
+    - name: MMDebugMenuSpriteReplace
+      shown: 0
+    - name: MMDebugMenuSwitch
+      shown: 0
+    - name: MMDebugOnScreenConsole
+      shown: 0
+    - name: MMBoundsExtensions
+      shown: 0
+    - name: MMFloatingText
+      shown: 0
+    - name: MMFloatingTextSpawner
+      shown: 0
+    - name: MMCursorVisible
+      shown: 0
+    - name: MMFader
+      shown: 0
+    - name: MMFaderDirectional
+      shown: 0
+    - name: MMFaderRound
+      shown: 0
+    - name: MMGetFocusOnEnable
+      shown: 0
+    - name: MMHealthBar
+      shown: 0
+    - name: MMProgressBar
+      shown: 0
+    - name: MMProgressBarDemoAuto
+      shown: 0
+    - name: MMPSBToUIConverter
+      shown: 0
+    - name: MMRadialProgressBar
+      shown: 0
+    - name: MMRaycastTarget
+      shown: 0
+    - name: MMSceneName
+      shown: 0
+    - name: MMSelectionBase
+      shown: 0
+    - name: MMSliderStep
+      shown: 0
+    - name: MMTwoSidedUI
+      shown: 0
+    - name: SelectionBase
+      shown: 0
+    - name: MMGyroscope
+      shown: 0
+    - name: MMArray
+      shown: 0
+    - name: MMConsole
+      shown: 0
+    - name: MMImage
+      shown: 0
+    - name: MMInput
+      shown: 0
+    - name: MMTilemap
+      shown: 0
+    - name: MMTime
+      shown: 0
+    - name: MMRandomBoundsInstantiator
+      shown: 0
+    - name: MMRandomInstantiator
+      shown: 0
+    - name: MMSpawnAroundTester
+      shown: 0
+    - name: MMFaceDirection
+      shown: 0
+    - name: MMFollowTarget
+      shown: 0
+    - name: MMPath
+      shown: 0
+    - name: MMPathMovement
+      shown: 0
+    - name: MMPositionRecorder
+      shown: 0
+    - name: MMPreventPassingThrough
+      shown: 0
+    - name: MMPreventPassingThrough2D
+      shown: 0
+    - name: MMPreventPassingThrough3D
+      shown: 0
+    - name: MMSquashAndStretch
+      shown: 0
+    - name: MMStayInPlace
+      shown: 0
+    - name: MMObjectBounds
+      shown: 0
+    - name: MMMultipleObjectPooler
+      shown: 0
+    - name: MMObjectPool
+      shown: 0
+    - name: MMObjectPooler
+      shown: 0
+    - name: MMPoolableObject
+      shown: 0
+    - name: MMSimpleObjectPooler
+      shown: 0
+    - name: MMObservableDemoObserver
+      shown: 0
+    - name: MMObservableDemoObserverAutoSleep
+      shown: 0
+    - name: MMObservableDemoSubject
+      shown: 0
+    - name: MMAutoDestroyParticleSystem
+      shown: 0
+    - name: MMChangeFogColor
+      shown: 0
+    - name: MMDelayParticles
+      shown: 0
+    - name: MMRendererSortingLayer
+      shown: 0
+    - name: MMTrailRendererSortingLayer
+      shown: 0
+    - name: MMVisibleParticle
+      shown: 0
+    - name: MMFPSCounter
+      shown: 0
+    - name: MMFPSUnlock
+      shown: 0
+    - name: MMRigidbodyCenterOfMass
+      shown: 0
+    - name: MMRigidbodyInterface
+      shown: 0
+    - name: MMTilemapGenerator
+      shown: 0
+    - name: FloatController
+      shown: 0
+    - name: LightController
+      shown: 0
+    - name: ShaderController
+      shown: 0
+    - name: TransformController
+      shown: 0
+    - name: MMRadioBroadcaster
+      shown: 0
+    - name: MMRadioReceiver
+      shown: 0
+    - name: MMRadioSignal
+      shown: 0
+    - name: MMRadioSignalAudioAnalyzer
+      shown: 0
+    - name: MMRadioSignalGenerator
+      shown: 0
+    - name: MMSaveLoadTester
+      shown: 0
+    - name: MMLoadScene
+      shown: 0
+    - name: MMSceneLoadingImageProgress
+      shown: 0
+    - name: MMSceneLoadingTextProgress
+      shown: 0
+    - name: MMAdditiveSceneLoadingManager
+      shown: 0
+    - name: MMSceneLoadingManager
+      shown: 0
+    - name: MMPersistentHumbleSingleton`1
+      shown: 0
+    - name: MMPersistentSingleton`1
+      shown: 0
+    - name: MMSingleton`1
+      shown: 0
+    - name: MMBezierLineRenderer
+      shown: 0
+    - name: MMAutoOrderInLayer
+      shown: 0
+    - name: MMLineRendererCircle
+      shown: 0
+    - name: MMLineRendererDriver
+      shown: 0
+    - name: MMTilemapBoolean
+      shown: 0
+    - name: MMTilemapCleaner
+      shown: 0
+    - name: MMTilemapShadow
+      shown: 0
+    - name: MMCountdown
+      shown: 0
+    - name: MMPlotter
+      shown: 0
+    - name: MMPlotterAxis
+      shown: 0
+    - name: MMPlotterGenerator
+      shown: 0
+    - name: MMAnimationCurveGenerator
+      shown: 0
+    - name: MMTween
+      shown: 0
+    - name: MMApplicationQuit
+      shown: 0
+    - name: MMDebugController
+      shown: 0
+    - name: MMOpenURL
+      shown: 0
+    - name: MMSceneRestarter
+      shown: 0
+    - name: MMSceneViewIcon
+      shown: 0
+    - name: MMScreenshot
+      shown: 0
+    - name: MMTransformRandomizer
+      shown: 0
+    - name: PanningTexture
+      shown: 0
+    - name: MMConeOfVision
+      shown: 0
+    - name: MMConeOfVision2D
+      shown: 0
+    - name: RecorderBindings
+      shown: 0
+    - name: DOTweenComponent
+      shown: 0
+    customComponents: []
+    unityVersion: 2021.3.1f1
+    isDirty: 0
