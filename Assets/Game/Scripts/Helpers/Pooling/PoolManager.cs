@@ -57,6 +57,7 @@ namespace Game.Scripts.Helpers.Pooling
                 poolObject.OnSpawn();
                 return poolObject;
             }
+            
             return default;
         }
 

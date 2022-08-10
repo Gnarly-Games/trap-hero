@@ -15,6 +15,8 @@ namespace Game.Scripts.Core
         public UnityEvent onLevelFailed;
         public UnityEvent onLevelEnded;
 
+        public bool isGameRunning;
+
         private void Start()
         {
             onGameInitialized?.Invoke();
@@ -23,6 +25,7 @@ namespace Game.Scripts.Core
         public void OnStartGame()
         {
             onLevelStarted?.Invoke();
+            isGameRunning = true;
         }
 
         public void OnLevelCompleted()

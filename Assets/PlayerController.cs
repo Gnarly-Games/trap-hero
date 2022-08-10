@@ -1,0 +1,63 @@
+using System;
+using DG.Tweening;
+using Game.Scripts.Core;
+using TMPro;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField] private int health;
+    [SerializeField] private int enemyDamage;
+    [SerializeField] private Collider playerCollider;
+    [SerializeField] private TMP_Text goldText;
+    [SerializeField] private MeshRenderer meshRenderer;
+
+    private Color _originalColor;
+
+    public int goldAmount;
+
+    private void Start()
+    {
+        GameManager.Instance.onLevelFailed.AddListener(() => playerCollider.enabled = false);
+
+        _originalColor = meshRenderer.material.color;
+    }
+
+    private void GetDamage()
+    {
+        health -= enemyDamage;
+
+        meshRenderer.material.DOColor(Color.white, 0.1f)
+            .SetLoops(3)
+            .OnComplete(() => meshRenderer.material.DOColor(_originalColor, 0.1f));
+        
+        if (health > 0) return;
+        GameManager.Instance.onLevelFailed?.Invoke();
+    }
+
+    private void CollectGold()
+    {
+        goldAmount++;
+        goldText.text = goldAmount.ToString();
+    }
+
+    public void RemoveGold()
+    {
+        if (goldAmount == 0) return;
+        
+        goldAmount--;
+        goldText.text = goldAmount.ToString();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy")) GetDamage();
+        if (other.CompareTag("Gold"))
+        {
+            CollectGold();
+            Destroy(other.gameObject);
+        }
+        
+    }
+}
