@@ -1,22 +1,19 @@
-using System;
 using DG.Tweening;
 using Game.Scripts.Core;
-using Game.Scripts.Enemy;
-using TMPro;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
-{
-    [SerializeField] private int health;
-    [SerializeField] private int enemyDamage;
+{ 
+    public int health;
+    
     [SerializeField] private Collider playerCollider;
-    [SerializeField] private TMP_Text goldText;
     [SerializeField] private SkinnedMeshRenderer meshRenderer;
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject joyStick;
-    [SerializeField] private Image hitPanel;
+    
+    [SerializeField] private VoidEvent onDamageReceived;
+    [SerializeField] private IntEvent onGoldAmountChanged;
 
     private Color _originalColor;
 
@@ -25,34 +22,37 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.onLevelFailed.AddListener(() => playerCollider.enabled = false);
-        healthBar.value = health / 100f;
         _originalColor = meshRenderer.material.color;
     }
 
-    private void GetDamage()
+    public void GetDamage(int damage)
     {
-        health -= enemyDamage;
-        healthBar.value = health / 100f;
-        hitPanel.gameObject.SetActive(true);
+        health -= damage;
+        
+        onDamageReceived.Raise();
         meshRenderer.material.DOColor(Color.white, 0.1f)
             .SetLoops(3)
             .OnComplete(() => {
                 meshRenderer.material.DOColor(_originalColor, 0.1f);
-                hitPanel.gameObject.SetActive(false);
             });
         
-        if (health > 0) return;
+        if (health <= 0) OnDeath();
+    }
 
+    private void OnDeath()
+    {
         playerAnimator.SetBool("Running", false);
         playerAnimator.SetBool("Death", true);
+        
         joyStick.SetActive(false);
+        
         GameManager.Instance.onLevelFailed?.Invoke();
     }
 
     private void CollectGold()
     {
         goldAmount++;
-        goldText.text = goldAmount.ToString();
+        onGoldAmountChanged.Raise(goldAmount);
     }
 
     public void RemoveGold()
@@ -60,22 +60,14 @@ public class PlayerController : MonoBehaviour
         if (goldAmount == 0) return;
         
         goldAmount--;
-        goldText.text = goldAmount.ToString();
-
+        onGoldAmountChanged.Raise(goldAmount);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) {
-            var controller = other.gameObject.GetComponent<EnemyController>();
-            if(controller.Dead) return;
-            GetDamage();
-        }
-        if (other.CompareTag("Gold"))
-        {
-            CollectGold();
-            Destroy(other.gameObject);
-        }
+        if (!other.CompareTag("Gold")) return;
         
+        CollectGold();
+        Destroy(other.gameObject);
     }
 }

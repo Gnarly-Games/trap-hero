@@ -1,6 +1,18 @@
 {
+  "scopedRegistries": [
+    {
+        "name": "NPM Registry",
+        "url": "https://registry.npmjs.org",
+        "scopes": [
+            "com.unity-atoms.unity-atoms-core",
+            "com.unity-atoms.unity-atoms-base-atoms"
+        ]
+    }
+],
   "dependencies": {
     "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
+    "com.unity-atoms.unity-atoms-core": "4.4.5",
+    "com.unity-atoms.unity-atoms-base-atoms": "4.4.5",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.cinemachine": "2.8.6",
     "com.unity.collab-proxy": "1.15.16",

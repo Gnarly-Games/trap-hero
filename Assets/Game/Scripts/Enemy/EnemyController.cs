@@ -3,6 +3,7 @@ using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace Game.Scripts.Enemy
@@ -15,16 +16,16 @@ namespace Game.Scripts.Enemy
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
         [SerializeField] private Animator animator;
+        [SerializeField] private int damage;
         
-        private Transform _playerTransform;
+        private PlayerController _playerController;
 
         private Action _updatePool;
-        private bool _moving;
-        private float _nextDirectionChange;
-        public bool Dead;
+        private bool _isDead;
+
         private void Start()
         {
-            _playerTransform = GameObject.FindWithTag("Player").transform;
+            _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
             GameManager.Instance.onLevelStarted.AddListener(EnableMove);
             GameManager.Instance.onLevelFailed.AddListener(DisableMove);
@@ -39,35 +40,32 @@ namespace Game.Scripts.Enemy
 
         private void Move()
         {
-            if(!_moving) {
-                _moving = true;
-                animator.SetBool("Running", true);
-            }
-            var targetPosition = _playerTransform.position;
-
-            if(_nextDirectionChange < Time.time ) {
-                _nextDirectionChange = Time.time + 0.02f;
-            }
+            var targetPosition = _playerController.transform.position;
+            
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
-
             enemyRigidbody.velocity = transform.forward * moveSpeed;
         }
 
         private void EnableMove()
         {
             _updatePool += Move;
+            animator.SetBool("Running", true);
         }
 
         private void DisableMove()
         {
             _updatePool -= Move;
             enemyRigidbody.velocity = Vector3.zero;
-             
+        }
+
+        private void DealDamage()
+        {
+            _playerController.GetDamage(damage);   
         }
 
         private void OnDeath()
         {
-            Dead = true;
+            _isDead = true;
             DisableMove();
             animator.SetBool("Running", false);
             animator.SetBool("Death", true);
@@ -75,8 +73,6 @@ namespace Game.Scripts.Enemy
             mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>
                 {
-
-                    _moving = false;
                     var spawnedGold = Instantiate(gold);
                     spawnedGold.transform.position = transform.position;
                     enemyRigidbody.velocity = Vector3.zero;
@@ -84,6 +80,7 @@ namespace Game.Scripts.Enemy
                     var c = Color.black;
                     c.a = 0.4f;
                     mesh.material.color = c;
+                    
                     Destroy(gameObject, 1f);
                 });
 
@@ -91,9 +88,12 @@ namespace Game.Scripts.Enemy
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Trap")) return;
+            if (other.CompareTag("Trap")) OnDeath();
             
-            OnDeath();
+            if (other.CompareTag("Player"))
+            {
+                if (!_isDead) DealDamage();
+            }
         }
 
         #region Pool

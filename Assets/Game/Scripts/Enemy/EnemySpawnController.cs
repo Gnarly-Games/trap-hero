@@ -35,22 +35,22 @@ namespace Game.Scripts.Enemy
                 {
                     SpawnEnemy();
                 }
+                
                 _currentSpawnRate += 1;
-
             }
         }
 
         private void SpawnEnemy()
         {
             var randomDirection = Random.insideUnitCircle.normalized;
-            randomDirection *= Random.RandomRange(power, power * 1.5f);
+            randomDirection *= Random.Range(power, power * 1.5f);
 
             var spawnPoint = playerTransform.position;
             spawnPoint.x += randomDirection.x;
             spawnPoint.z += randomDirection.y;
             spawnPoint.y = 0f;
 
-            var spawnedEnemy = Instantiate(enemyPrefab);;
+            var spawnedEnemy = Instantiate(enemyPrefab);
             spawnedEnemy.gameObject.transform.position = spawnPoint;
         }
     }

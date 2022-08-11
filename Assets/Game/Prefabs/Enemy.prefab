@@ -105,7 +105,7 @@ MonoBehaviour:
   mesh: {fileID: 8243988027736856075}
   enemyRigidbody: {fileID: -7477463257728652067}
   animator: {fileID: 9144122258545499437}
-  Dead: 0
+  damage: 10
 --- !u!54 &-7477463257728652067
 Rigidbody:
   m_ObjectHideFlags: 0

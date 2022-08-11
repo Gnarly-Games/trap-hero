@@ -11,6 +11,26 @@
       },
       "hash": "43a31cbb613c06417c3a927023b37239bcd5fca8"
     },
+    "com.unity-atoms.unity-atoms-base-atoms": {
+      "version": "4.4.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.physics2d": "1.0.0",
+        "com.unity-atoms.unity-atoms-core": "4.4.5"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "com.unity-atoms.unity-atoms-core": {
+      "version": "4.4.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://registry.npmjs.org"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
