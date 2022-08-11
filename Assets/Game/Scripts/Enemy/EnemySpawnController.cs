@@ -11,10 +11,12 @@ namespace Game.Scripts.Enemy
         [SerializeField] private float interval;
         [SerializeField] private int spawnCount;
         [SerializeField] private float power;
-
+        [SerializeField] private EnemyController enemyPrefab;
+        private int _currentSpawnRate;
         private void Start()
         {
-            for (var i = 0; i < spawnCount; i++)
+            _currentSpawnRate = 5;
+            for (var i = 0; i < _currentSpawnRate; i++)
             {
                 SpawnEnemy();
             }
@@ -28,25 +30,28 @@ namespace Game.Scripts.Enemy
             {
                 yield return new WaitForSeconds(interval);
 
-                for (var i = 0; i < spawnCount; i++)
+                var amount = Mathf.Min(_currentSpawnRate, spawnCount);
+                for (var i = 0; i < amount; i++)
                 {
                     SpawnEnemy();
                 }
+                _currentSpawnRate += 1;
+
             }
         }
 
         private void SpawnEnemy()
         {
-            var randomDirection = Random.onUnitSphere;
-            randomDirection *= power;
+            var randomDirection = Random.insideUnitCircle.normalized;
+            randomDirection *= Random.RandomRange(power, power * 1.5f);
 
             var spawnPoint = playerTransform.position;
             spawnPoint.x += randomDirection.x;
-            spawnPoint.z += randomDirection.z;
+            spawnPoint.z += randomDirection.y;
             spawnPoint.y = 0f;
 
-            var spawnedEnemy = PoolManager.Instance.GetObject<EnemyController>();
-            spawnedEnemy.transform.position = spawnPoint;
+            var spawnedEnemy = Instantiate(enemyPrefab);;
+            spawnedEnemy.gameObject.transform.position = spawnPoint;
         }
     }
 }

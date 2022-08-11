@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Core.SaveManagers;
 using MyBox;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Game.Scripts.Core
@@ -17,6 +18,9 @@ namespace Game.Scripts.Core
 
         public bool isGameRunning;
 
+        private void Awake() {
+            Application.targetFrameRate = 60;
+        }
         private void Start()
         {
             onGameInitialized?.Invoke();

@@ -507,11 +507,31 @@ MonoBehaviour:
       shown: 0
     - name: DemoPackageTester
       shown: 0
+    - name: PlayerController
+      shown: 0
+    - name: TrapUnlockPoint
+      shown: 0
+    - name: UnlockProgress
+      shown: 0
+    - name: Rotate
+      shown: 0
+    - name: Test
+      shown: 0
+    - name: FailPanel
+      shown: 0
+    - name: InGamePanel
+      shown: 0
+    - name: MainMenuPanel
+      shown: 0
+    - name: SuccessPanel
+      shown: 0
+    - name: UIPanel
+      shown: 0
+    - name: TrapController
+      shown: 0
     - name: JoystickMovementMechanic
       shown: 0
     - name: Mechanic
-      shown: 0
-    - name: SwerveMechanic
       shown: 0
     - name: CanvasFixer
       shown: 0
@@ -521,19 +541,23 @@ MonoBehaviour:
       shown: 0
     - name: CooldownHandler
       shown: 0
+    - name: EnemyController
+      shown: 0
+    - name: EnemySpawnController
+      shown: 0
     - name: GameManager
       shown: 0
     - name: Level
       shown: 0
-    - name: LevelHandler
+    - name: LevelManager
       shown: 0
     - name: MechanicManager
-      shown: 0
-    - name: SaveLoadManager
       shown: 0
     - name: UIManager
       shown: 0
     - name: VibrationHandler
+      shown: 0
+    - name: LevelSaveHandler
       shown: 0
     - name: JoystickMovementHandler
       shown: 0
@@ -1129,9 +1153,105 @@ MonoBehaviour:
       shown: 0
     - name: CommentaryComponent
       shown: 0
+    - name: MMFeedbackHaptics
+      shown: 0
     - name: MMFloatingTextMeshPro
       shown: 0
-    - name: MMFeedbackHaptics
+    - name: CinemachineCameraOffset
+      shown: 0
+    - name: CinemachineRecomposer
+      shown: 0
+    - name: CinemachineTouchInputMapper
+      shown: 0
+    - name: Cinemachine3rdPersonAim
+      shown: 0
+    - name: CinemachineBlendListCamera
+      shown: 0
+    - name: CinemachineBrain
+      shown: 0
+    - name: CinemachineClearShot
+      shown: 0
+    - name: CinemachineCollider
+      shown: 0
+    - name: CinemachineConfiner
+      shown: 0
+    - name: CinemachineConfiner2D
+      shown: 0
+    - name: CinemachineDollyCart
+      shown: 0
+    - name: CinemachineExternalCamera
+      shown: 0
+    - name: CinemachineFollowZoom
+      shown: 0
+    - name: CinemachineFreeLook
+      shown: 0
+    - name: CinemachineMixingCamera
+      shown: 0
+    - name: CinemachinePath
+      shown: 0
+    - name: CinemachinePipeline
+      shown: 0
+    - name: CinemachinePixelPerfect
+      shown: 0
+    - name: CinemachineSmoothPath
+      shown: 0
+    - name: CinemachineStateDrivenCamera
+      shown: 0
+    - name: CinemachineStoryboard
+      shown: 0
+    - name: CinemachineTargetGroup
+      shown: 0
+    - name: CinemachineVirtualCamera
+      shown: 0
+    - name: Cinemachine3rdPersonFollow
+      shown: 0
+    - name: CinemachineBasicMultiChannelPerlin
+      shown: 0
+    - name: CinemachineComposer
+      shown: 0
+    - name: CinemachineFramingTransposer
+      shown: 0
+    - name: CinemachineGroupComposer
+      shown: 0
+    - name: CinemachineHardLockToTarget
+      shown: 0
+    - name: CinemachineHardLookAt
+      shown: 0
+    - name: CinemachineOrbitalTransposer
+      shown: 0
+    - name: CinemachinePOV
+      shown: 0
+    - name: CinemachineSameAsFollowTarget
+      shown: 0
+    - name: CinemachineTrackedDolly
+      shown: 0
+    - name: CinemachineTransposer
+      shown: 0
+    - name: CinemachineComponentBase
+      shown: 0
+    - name: CinemachineExtension
+      shown: 0
+    - name: CinemachinePathBase
+      shown: 0
+    - name: CinemachineVirtualCameraBase
+      shown: 0
+    - name: CinemachineInputProvider
+      shown: 0
+    - name: CinemachineTriggerAction
+      shown: 0
+    - name: GroupWeightManipulator
+      shown: 0
+    - name: CinemachineCollisionImpulseSource
+      shown: 0
+    - name: CinemachineImpulseListener
+      shown: 0
+    - name: CinemachineImpulseSource
+      shown: 0
+    - name: CinemachineIndependentImpulseListener
+      shown: 0
+    - name: CinemachinePostProcessing
+      shown: 0
+    - name: CinemachineVolumeSettings
       shown: 0
     - name: TCP2_CameraDepth
       shown: 0
@@ -1146,6 +1266,8 @@ MonoBehaviour:
     - name: MMGhostCamera
       shown: 0
     - name: MMAutoRotate
+      shown: 0
+    - name: MMGyroParallax
       shown: 0
     - name: MMFeedbackBlink
       shown: 0
@@ -1202,6 +1324,28 @@ MonoBehaviour:
     - name: MMFeedbackProperty
       shown: 0
     - name: MMFeedbackRadioSignal
+      shown: 0
+    - name: MMFeedbackCinemachineImpulse
+      shown: 0
+    - name: MMFeedbackCinemachineImpulseClear
+      shown: 0
+    - name: MMFeedbackCinemachineTransition
+      shown: 0
+    - name: MMCinemachineCameraShaker
+      shown: 0
+    - name: MMCinemachineClippingPlanesShaker
+      shown: 0
+    - name: MMCinemachineFieldOfViewShaker
+      shown: 0
+    - name: MMCinemachineFreeLookZoom
+      shown: 0
+    - name: MMCinemachineOrthographicSizeShaker
+      shown: 0
+    - name: MMCinemachinePriorityBrainListener
+      shown: 0
+    - name: MMCinemachinePriorityListener
+      shown: 0
+    - name: MMCinemachineZoom
       shown: 0
     - name: MMAchievementDisplayItem
       shown: 0

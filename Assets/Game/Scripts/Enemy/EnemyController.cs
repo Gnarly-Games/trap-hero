@@ -12,13 +12,16 @@ namespace Game.Scripts.Enemy
         [SerializeField] private GameObject gold;
         [SerializeField] private float lookSpeed;
         [SerializeField] private float moveSpeed;
-        [SerializeField] private MeshRenderer mesh;
+        [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
+        [SerializeField] private Animator animator;
         
         private Transform _playerTransform;
 
         private Action _updatePool;
-
+        private bool _moving;
+        private float _nextDirectionChange;
+        public bool Dead;
         private void Start()
         {
             _playerTransform = GameObject.FindWithTag("Player").transform;
@@ -36,8 +39,17 @@ namespace Game.Scripts.Enemy
 
         private void Move()
         {
+            if(!_moving) {
+                _moving = true;
+                animator.SetBool("Running", true);
+            }
             var targetPosition = _playerTransform.position;
+
+            if(_nextDirectionChange < Time.time ) {
+                _nextDirectionChange = Time.time + 0.02f;
+            }
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
+
             enemyRigidbody.velocity = transform.forward * moveSpeed;
         }
 
@@ -50,20 +62,29 @@ namespace Game.Scripts.Enemy
         {
             _updatePool -= Move;
             enemyRigidbody.velocity = Vector3.zero;
+             
         }
 
         private void OnDeath()
         {
+            Dead = true;
             DisableMove();
+            animator.SetBool("Running", false);
+            animator.SetBool("Death", true);
 
-            transform.DOScale(new Vector3(0.5f, 1.15f, 0.5f), 0.2f);
-                mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
+            mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>
                 {
+
+                    _moving = false;
                     var spawnedGold = Instantiate(gold);
                     spawnedGold.transform.position = transform.position;
-                    
-                    gameObject.SetActive(false);
+                    enemyRigidbody.velocity = Vector3.zero;
+                    enemyRigidbody.angularVelocity = Vector3.zero;
+                    var c = Color.black;
+                    c.a = 0.4f;
+                    mesh.material.color = c;
+                    Destroy(gameObject, 1f);
                 });
 
         }
