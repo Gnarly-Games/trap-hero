@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b35ac938ccc24cbdc336146b9b3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: {fileID: 7853928070767733304, guid: fc3b864b8a5a6b8408cb98b2cf6d6782, type: 3}
+  gold: {fileID: 232536344469282060, guid: fc3b864b8a5a6b8408cb98b2cf6d6782, type: 3}
   lookSpeed: 5
   moveSpeed: 2
   mesh: {fileID: 8243988027736856075}

@@ -5,6 +5,7 @@ using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Enemy
 {
@@ -73,8 +74,8 @@ namespace Game.Scripts.Enemy
             mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>
                 {
-                    var spawnedGold = Instantiate(gold);
-                    spawnedGold.transform.position = transform.position;
+                    SpawnGold();
+                    
                     enemyRigidbody.velocity = Vector3.zero;
                     enemyRigidbody.angularVelocity = Vector3.zero;
                     var c = Color.black;
@@ -83,7 +84,14 @@ namespace Game.Scripts.Enemy
                     
                     Destroy(gameObject, 1f);
                 });
+        }
 
+        private void SpawnGold()
+        {
+            var spawnedGold = Instantiate(gold).transform;
+            spawnedGold.position = transform.position;
+
+            //spawnedGold.DOScale(1.4f, 0.2f).OnComplete(() => spawnedGold.DOScale(1f, 0.2f));
         }
 
         private void OnTriggerEnter(Collider other)

@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.onLevelFailed?.Invoke();
     }
 
-    private void CollectGold()
+    public void CollectGold()
     {
         goldAmount++;
         onGoldAmountChanged.Raise(goldAmount);
@@ -61,13 +61,5 @@ public class PlayerController : MonoBehaviour
         
         goldAmount--;
         onGoldAmountChanged.Raise(goldAmount);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Gold")) return;
-        
-        CollectGold();
-        Destroy(other.gameObject);
     }
 }
