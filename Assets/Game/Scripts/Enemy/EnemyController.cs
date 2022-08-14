@@ -14,7 +14,7 @@ namespace Game.Scripts.Enemy
         [SerializeField] private float moveSpeed;
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
-        [SerializeField] private Animator animator;
+        public Animator animator;
         [SerializeField] private AudioSource deathAudio;
         
         private Transform _playerTransform;
@@ -22,6 +22,11 @@ namespace Game.Scripts.Enemy
         private Action _updatePool;
         private float _nextDirectionChange;
         public bool Dead;
+
+        public bool Attacking;
+        public string movementAnimation = "Running";
+        public int health;
+        public bool isBoss;
         private void Start()
         {
             _playerTransform = GameObject.FindWithTag("Player").transform;
@@ -30,6 +35,8 @@ namespace Game.Scripts.Enemy
             GameManager.Instance.onLevelFailed.AddListener(DisableMove);
             
             if (GameManager.Instance.isGameRunning) EnableMove();
+
+            isBoss = gameObject.GetComponent<Boss>() != null;
         }
         
         private void Update()
@@ -39,7 +46,7 @@ namespace Game.Scripts.Enemy
 
         private void Move()
         {
-         
+            if(Attacking) return;
             var targetPosition = _playerTransform.position;
 
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
@@ -47,9 +54,12 @@ namespace Game.Scripts.Enemy
             enemyRigidbody.velocity = transform.forward * moveSpeed;
         }
 
+        public void LookAt(Vector3 targetPosition, float delay=0) {
+            transform.SlowLookAt(targetPosition.WithY(transform.position.y), delay);
+        }
         private void EnableMove()
         {
-                animator.SetBool("Running", true);
+                animator.SetBool(movementAnimation, true);
 
             _updatePool += Move;
         }
@@ -65,7 +75,7 @@ namespace Game.Scripts.Enemy
         {
             Dead = true;
             DisableMove();
-            animator.SetBool("Running", false);
+            animator.SetBool(movementAnimation, false);
             animator.SetBool("Death", true);
             deathAudio.Play();
             gameObject.GetComponent<Collider>().isTrigger = true;
@@ -89,8 +99,12 @@ namespace Game.Scripts.Enemy
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Trap")) return;
-            
-            OnDeath();
+            health--;
+            if(isBoss) {
+                BossHealth.Instance.UpdateHealth(health);
+            }
+            if(health <= 0) 
+                OnDeath();
         }
 
         #region Pool
