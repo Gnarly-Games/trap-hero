@@ -15,11 +15,11 @@ namespace Game.Scripts.Enemy
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
         [SerializeField] private Animator animator;
+        [SerializeField] private AudioSource deathAudio;
         
         private Transform _playerTransform;
 
         private Action _updatePool;
-        private bool _moving;
         private float _nextDirectionChange;
         public bool Dead;
         private void Start()
@@ -39,15 +39,9 @@ namespace Game.Scripts.Enemy
 
         private void Move()
         {
-            if(!_moving) {
-                _moving = true;
-                animator.SetBool("Running", true);
-            }
+         
             var targetPosition = _playerTransform.position;
 
-            if(_nextDirectionChange < Time.time ) {
-                _nextDirectionChange = Time.time + 0.02f;
-            }
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
 
             enemyRigidbody.velocity = transform.forward * moveSpeed;
@@ -55,6 +49,8 @@ namespace Game.Scripts.Enemy
 
         private void EnableMove()
         {
+                animator.SetBool("Running", true);
+
             _updatePool += Move;
         }
 
@@ -71,18 +67,19 @@ namespace Game.Scripts.Enemy
             DisableMove();
             animator.SetBool("Running", false);
             animator.SetBool("Death", true);
-
+            deathAudio.Play();
+            gameObject.GetComponent<Collider>().isTrigger = true;
+            SpawnMonitor.Instance.RecordDead();
             mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>
                 {
 
-                    _moving = false;
                     var spawnedGold = Instantiate(gold);
                     spawnedGold.transform.position = transform.position;
                     enemyRigidbody.velocity = Vector3.zero;
                     enemyRigidbody.angularVelocity = Vector3.zero;
                     var c = Color.black;
-                    c.a = 0.4f;
+                    c.a = 0.5f;
                     mesh.material.color = c;
                     Destroy(gameObject, 1f);
                 });

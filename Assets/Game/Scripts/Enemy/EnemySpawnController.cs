@@ -12,10 +12,12 @@ namespace Game.Scripts.Enemy
         [SerializeField] private int spawnCount;
         [SerializeField] private float power;
         [SerializeField] private EnemyController enemyPrefab;
+        [SerializeField] private GameObject heartPrefab;
         private int _currentSpawnRate;
+        private int spawnId;
         private void Start()
         {
-            _currentSpawnRate = 5;
+            _currentSpawnRate = 1;
             for (var i = 0; i < _currentSpawnRate; i++)
             {
                 SpawnEnemy();
@@ -35,23 +37,59 @@ namespace Game.Scripts.Enemy
                 {
                     SpawnEnemy();
                 }
-                _currentSpawnRate += 1;
+                if(_currentSpawnRate < spawnCount) {
+                    _currentSpawnRate += 1;
+                    SpawnMonitor.Instance.UpdateSpawnRate(_currentSpawnRate);
+                }
+                spawnId++;
+                if(spawnId % 7 == 0) {
+                    SpawnHeart();
+                } 
+
 
             }
         }
-
-        private void SpawnEnemy()
+        private void SpawnHeart()
         {
             var randomDirection = Random.insideUnitCircle.normalized;
-            randomDirection *= Random.RandomRange(power, power * 1.5f);
+            randomDirection *= Random.Range(4f, 5f);
 
             var spawnPoint = playerTransform.position;
             spawnPoint.x += randomDirection.x;
             spawnPoint.z += randomDirection.y;
             spawnPoint.y = 0f;
+            
+            var dist = Vector3.Distance(playerTransform.position, Vector3.zero);
+
+            if(dist > 7) {
+                spawnPoint = Random.insideUnitCircle.normalized * 5f;
+                spawnPoint.y = 0f;
+            } 
+
+            var heart = Instantiate(heartPrefab);;
+            heart.gameObject.transform.position = spawnPoint;
+        }
+        private void SpawnEnemy()
+        {
+            var randomDirection = Random.insideUnitCircle.normalized;
+            randomDirection *= Random.Range(power, power * 1.5f);
+            
+            var spawnPoint = playerTransform.position;
+            spawnPoint.x += randomDirection.x;
+            spawnPoint.z += randomDirection.y;
+            spawnPoint.y = 0f;
+
+            var dist = Vector3.Distance(playerTransform.position, Vector3.zero);
+
+            if(dist > 7) {
+                spawnPoint = Random.insideUnitCircle.normalized * 5f;
+                spawnPoint.y = 0f;
+            } 
+            
 
             var spawnedEnemy = Instantiate(enemyPrefab);;
             spawnedEnemy.gameObject.transform.position = spawnPoint;
+            SpawnMonitor.Instance.RecordSpawn();
         }
     }
 }

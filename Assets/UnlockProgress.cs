@@ -21,6 +21,6 @@ public class UnlockProgress : MonoBehaviour
     {
         var cost = (Total - current);
         progressBar.value =  cost / Total;
-        progressText.text = $"{(int)(cost)}/{(int)Total}";
+        progressText.text = $"{(int)(current)}";
     }
 }

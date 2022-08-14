@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Scripts.Trap
 {
@@ -9,7 +10,7 @@ namespace Game.Scripts.Trap
         
         [SerializeField] private float enableInterval;
         [SerializeField] private float activeDuration;
-
+        public UnityEvent onActivate;
         private void Start()
         {
             StartCoroutine(ActivateTrap());
@@ -22,6 +23,7 @@ namespace Game.Scripts.Trap
                 yield return new WaitForSeconds(enableInterval);
             
                 trap.gameObject.SetActive(true);
+                onActivate?.Invoke();
                 yield return new WaitForSeconds(activeDuration);
             
                 trap.gameObject.SetActive(false);

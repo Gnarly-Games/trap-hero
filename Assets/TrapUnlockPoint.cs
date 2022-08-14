@@ -8,6 +8,8 @@ public class TrapUnlockPoint : MonoBehaviour
     [SerializeField] private float payInterval;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private UnlockProgress progress;
+    [SerializeField] private AudioSource unlockAudio;
+    [SerializeField] private AudioSource transferAudio;
 
     private bool _isPlayerInside;
 
@@ -36,8 +38,11 @@ public class TrapUnlockPoint : MonoBehaviour
     {
         unlockPrice--;
         progress.UpdateValue((float)unlockPrice);
+        if(unlockPrice%3 == 0) 
+            transferAudio.Play();
 
         if (unlockPrice > 0) return;
+        unlockAudio.Play();
 
         var trap = Instantiate(trapPrefab);
         trap.transform.position = transform.position;

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private GameObject joyStick;
     [SerializeField] private Image hitPanel;
+    [SerializeField] private AudioSource coinAudio;
+    [SerializeField] private AudioSource healthAudio;
 
     private Color _originalColor;
 
@@ -74,8 +76,15 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Gold"))
         {
             CollectGold();
+            coinAudio.Play();
             Destroy(other.gameObject);
         }
-        
+        if (other.CompareTag("Heart"))
+        {
+            health = 100;
+            healthAudio.Play();
+            healthBar.value = health / 100f;
+            Destroy(other.gameObject);
+        }
     }
 }
