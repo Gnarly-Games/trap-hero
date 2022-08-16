@@ -1394,7 +1394,6 @@ MonoBehaviour:
   playerTransform: {fileID: 1089284680}
   interval: 6
   spawnCount: 10
-  power: 7
   enemyPrefab: {fileID: 4313030504144367222, guid: 3650c88270c94c2428d4acbd5aae3663, type: 3}
   bossPrefab: {fileID: 1794220523449732049, guid: 75a7d687dc6acdc43a1caa6799601179, type: 3}
   heartPrefab: {fileID: 4094946194340295934, guid: f7ddd842380e6b943aa64b4039e81ea0, type: 3}
@@ -4254,7 +4253,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.46205357, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7421,7 +7420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
       propertyPath: onLevelStarted.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
       propertyPath: onLevelEnded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7448,6 +7447,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1517094028}
     - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
+      propertyPath: onLevelStarted.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 377804318}
+    - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
       propertyPath: onLevelCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2078890704}
@@ -7468,13 +7471,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
+      propertyPath: onLevelStarted.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartSpawning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
       propertyPath: onLevelStarted.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Game.Scripts.Core.MechanicManager, Assembly-CSharp
+      value: Game.Scripts.Enemy.EnemySpawnController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
       propertyPath: onLevelCreated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 959530494}
+    - target: {fileID: 2779379017149333661, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
+      propertyPath: onLevelStarted.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 170c7eab84c492d41b664cee189fa79b, type: 3}
 --- !u!1001 &3866735071192623964

@@ -20,6 +20,7 @@ namespace Game.Scripts.Enemy
         private Transform _playerTransform;
 
         private Action _updatePool;
+        
         private float _nextDirectionChange;
         public bool Dead;
 
@@ -28,6 +29,7 @@ namespace Game.Scripts.Enemy
         public int health;
         public bool isBoss;
         public bool grounded;
+        
         private void Start()
         {
             _playerTransform = GameObject.FindWithTag("Player").transform;
@@ -42,14 +44,14 @@ namespace Game.Scripts.Enemy
 
         private void Update()
         {
-            Move();
+            _updatePool?.Invoke();
         }
 
         private void Move()
         {
             if (Attacking) return;
-
             if (grounded) return;
+            
             var targetPosition = _playerTransform.position;
 
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
@@ -61,16 +63,17 @@ namespace Game.Scripts.Enemy
         {
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), delay);
         }
+        
         private void EnableMove()
         {
             animator.SetTrigger(movementAnimation);
-
+            _updatePool += Move;
         }
 
         private void DisableMove()
         {
             StopMovement();
-
+            _updatePool -= Move;
         }
 
         private void OnDeath()

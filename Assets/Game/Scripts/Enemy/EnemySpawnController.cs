@@ -10,7 +10,6 @@ namespace Game.Scripts.Enemy
         [SerializeField] private Transform playerTransform;
         [SerializeField] private float interval;
         [SerializeField] private int spawnCount;
-        [SerializeField] private float power;
         [SerializeField] private EnemyController enemyPrefab;
         [SerializeField] private  EnemyController bossPrefab;
 
@@ -19,14 +18,15 @@ namespace Game.Scripts.Enemy
         private int spawnId;
         
         EnemyController bossController;
-        private void Start()
+        
+        public void StartSpawning()
         {
             _currentSpawnRate = 1;
             for (var i = 0; i < _currentSpawnRate; i++)
             {
                 SpawnEnemy();
             }
-
+            
             StartCoroutine(SpawnEnemies());
         }
 
@@ -49,7 +49,7 @@ namespace Game.Scripts.Enemy
                 if(spawnId % 7 == 0) {
                     SpawnHeart();
                 }
-                if(spawnId % 1 == 0 && bossController==null) {
+                if(spawnId % 1 == 0 && bossController == null) {
                     SpawnEnemy(true);
                 }
             }
