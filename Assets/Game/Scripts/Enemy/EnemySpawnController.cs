@@ -1,35 +1,38 @@
 using System.Collections;
+using MyBox;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Enemy
 {
-    public class EnemySpawnController : MonoBehaviour
+    public class EnemySpawnController : Singleton<EnemySpawnController>
     {
         [SerializeField] private Transform playerTransform;
-        [SerializeField] private float interval;
-        [SerializeField] private int spawnCount;
+        [SerializeField] private float power;
         [SerializeField] private EnemyController enemyPrefab;
         [SerializeField] private  EnemyController bossPrefab;
+        [SerializeField] private float spawnCheckOffset;
+
+        [SerializeField] private float minionSpawnInterval;
+        [SerializeField] private float increaseMinionLimitInterval;
 
         [SerializeField] private GameObject heartPrefab;
         private int _currentSpawnRate;
         private int spawnId;
 
         private bool _shouldSpawn;
+
+        public int aliveMinionsCount;
+        private int _minionLimit = 1;
         
         EnemyController bossController;
         
         public void StartSpawning()
         {
-            _currentSpawnRate = 1;
-            for (var i = 0; i < _currentSpawnRate; i++)
-            {
-                SpawnEnemy();
-            }
-
             _shouldSpawn = true;
-            StartCoroutine(SpawnEnemies());
+            
+            StartCoroutine(IncreaseMinionLimit());
+            StartCoroutine(SpawnMinion());
         }
 
         public void StopSpawning()
@@ -37,31 +40,26 @@ namespace Game.Scripts.Enemy
             _shouldSpawn = false;
         }
 
-        private IEnumerator SpawnEnemies()
+        private IEnumerator IncreaseMinionLimit()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(increaseMinionLimitInterval);
+                _minionLimit++;
+            }
+        }
+
+        private IEnumerator SpawnMinion()
         {
             while (_shouldSpawn)
             {
-                yield return new WaitForSeconds(interval);
-                
-                var amount = Mathf.Min(_currentSpawnRate, spawnCount);
-                for (var i = 0; i < amount; i++)
-                {
-                    SpawnEnemy();
-                }
-                if(_currentSpawnRate < spawnCount) {
-                    _currentSpawnRate += 1;
-                    SpawnMonitor.Instance.UpdateSpawnRate(_currentSpawnRate);
-                }
-                spawnId++;
-                if(spawnId % 7 == 0) {
-                    SpawnHeart();
-                }
-                if(spawnId % 1 == 0 && bossController == null) {
-                    SpawnEnemy(true);
-                }
+                yield return new WaitUntil(() => aliveMinionsCount < _minionLimit);
+                SpawnEnemy();
+
+                yield return new WaitForSeconds(minionSpawnInterval);
             }
         }
-        
+
         private void SpawnHeart()
         {
             if (!_shouldSpawn) return;
@@ -88,28 +86,37 @@ namespace Game.Scripts.Enemy
         private void SpawnEnemy(bool boss=false)
         {
             if (!_shouldSpawn) return;
-            
-            var spawnPoint = Vector3.zero;
-            var dist = Vector3.Distance(playerTransform.position, Vector3.zero);
-            var randomDirection = Random.insideUnitCircle.normalized;
 
-            if(dist > 8) {
-                randomDirection *= Random.Range(4f, 6f);
-            }  else {
-                spawnPoint = playerTransform.position;
-                randomDirection *= Random.Range(12f, 15f);
-            }
-            spawnPoint.x += randomDirection.x;
-            spawnPoint.z += randomDirection.y;
-            spawnPoint.y = 0f;
+            aliveMinionsCount++;
+
+            var spawnPoint = GetRandomPosition();
             var spawnedEnemyType = boss ? bossPrefab : enemyPrefab;
             
             var spawnedEnemy = Instantiate(spawnedEnemyType);
             if(boss) {
                 bossController = spawnedEnemy;
             }
+            
             spawnedEnemy.gameObject.transform.position = spawnPoint;
             SpawnMonitor.Instance.RecordSpawn();
+        }
+
+        private Vector3 GetRandomPosition()
+        {
+            while (true)
+            {
+                var spawnPoint = playerTransform.position;
+                var randomDirection = Random.insideUnitCircle.normalized * power;
+
+                spawnPoint.x += randomDirection.x;
+                spawnPoint.z += randomDirection.y;
+                spawnPoint.y = 0f;
+                    
+                if (spawnPoint.x < -20 + spawnCheckOffset || spawnPoint.x > 20 - spawnCheckOffset) continue;
+                if (spawnPoint.z < -20 + spawnCheckOffset || spawnPoint.z > 20 - spawnCheckOffset) continue;
+
+                return spawnPoint;
+            }
         }
     }
 }

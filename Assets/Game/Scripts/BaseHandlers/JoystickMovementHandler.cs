@@ -28,6 +28,7 @@ namespace Game.Scripts.BaseHandlers
                 animator.SetBool("Running", _moving);
                 animator.SetBool("DynIdle", !_moving);
             }
+            
             _actorRigidbody.velocity = transform.forward * actorMovementSpeed;
         }
 
@@ -38,6 +39,7 @@ namespace Game.Scripts.BaseHandlers
                 animator.SetBool("Running", _moving);
                 animator.SetBool("DynIdle", !_moving);
             }
+            
             _actorRigidbody.velocity = Vector3.zero;
         }
     }

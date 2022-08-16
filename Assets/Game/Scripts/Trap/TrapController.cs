@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Scripts.Trap
 {
@@ -8,26 +7,28 @@ namespace Game.Scripts.Trap
     {
         [SerializeField] private GameObject trap;
         
-        [SerializeField] private float enableInterval;
         [SerializeField] private float activeDuration;
-        public UnityEvent onActivate;
-        private void Start()
-        {
-            StartCoroutine(ActivateTrap());
-        }
+        [SerializeField] private float chargeDuration;
+
+        private bool _isTrapActive;
 
         private IEnumerator ActivateTrap()
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(enableInterval);
+            _isTrapActive = true;
+            yield return new WaitForSeconds(chargeDuration);
+            trap.gameObject.SetActive(true);
             
-                trap.gameObject.SetActive(true);
-                onActivate?.Invoke();
-                yield return new WaitForSeconds(activeDuration);
+            yield return new WaitForSeconds(activeDuration);
+            trap.gameObject.SetActive(false);
+            _isTrapActive = false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.CompareTag("Player")) return;
+            if (_isTrapActive) return;
             
-                trap.gameObject.SetActive(false);
-            }
+            StartCoroutine(ActivateTrap());
         }
     }
 }

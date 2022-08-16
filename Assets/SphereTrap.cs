@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.Scripts.Enemy;
 using UnityEngine;
 
 public class SphereTrap : MonoBehaviour
@@ -32,5 +31,13 @@ public class SphereTrap : MonoBehaviour
                 audio.Pause();
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (rigidbody.velocity.magnitude < 1) return;
+        if (!collision.gameObject.CompareTag("Enemy")) return;
+        
+        collision.gameObject.GetComponent<EnemyController>().GetDamage();  
     }
 }

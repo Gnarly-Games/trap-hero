@@ -106,6 +106,10 @@ MonoBehaviour:
   mesh: {fileID: 8243988027736856075}
   enemyRigidbody: {fileID: -7477463257728652067}
   attackInterval: 0.5
+  score: 5
+  scoreCanvas: {fileID: 0}
+  scoreText: {fileID: 0}
+  billboard: {fileID: 0}
   deathAudio: {fileID: 504756170224242383}
   Dead: 0
   animator: {fileID: 9144122258545499437}

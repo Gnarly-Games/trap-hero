@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Game.Scripts.UI;
 using TMPro;
 using UnityEngine;
 
@@ -15,11 +11,21 @@ public class SpawnMonitor : MonoBehaviour
     public TMP_Text spawnRateText;
     public TMP_Text deadCountText;
     public TMP_Text aliveCountText;
+    public TMP_Text scoreText;
+
+    private int _score;
     
- public static SpawnMonitor Instance;
-        void Awake() {
+    public static SpawnMonitor Instance;
+    void Awake() {
             Instance = this;
-        }
+    }
+
+
+    public void IncreaseScore(int score)
+    {
+        _score += score;
+        scoreText.text = "Score: " + _score;
+    }
         
     internal void RecordDead()
     {

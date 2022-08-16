@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) {
+        if (other.CompareTag("Enemy")) 
+        {
             var controller = other.gameObject.GetComponent<EnemyController>();
             if(controller.Dead) return;
             GetDamage();

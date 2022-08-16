@@ -4,7 +4,11 @@ using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
+using Game.Scripts.Score;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Enemy
 {
@@ -16,7 +20,8 @@ namespace Game.Scripts.Enemy
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
         [SerializeField] private float attackInterval;
-        
+        [SerializeField] private int score;
+
         [SerializeField] private AudioSource deathAudio;
 
         private PlayerController _playerController;
@@ -44,7 +49,7 @@ namespace Game.Scripts.Enemy
             if (GameManager.Instance.isGameRunning) EnableMove();
 
             isBoss = gameObject.GetComponent<Boss>() != null;
-
+            
             StartCoroutine(StartAttack());
         }
 
@@ -83,8 +88,36 @@ namespace Game.Scripts.Enemy
             animator.SetTrigger("DynIdle");
         }
 
+        public void GetDamage()
+        {
+            if (isBoss && !Attacking)
+            {
+                grounded = true;
+                BossHealth.Instance.UpdateHealth(health);
+                StopMovement();
+                var collider = gameObject.GetComponent<Collider>();
+                collider.enabled = false;
+                animator.SetTrigger("Death");
+                DOVirtual.DelayedCall(2f, () =>
+                {
+                    grounded = false;
+                    collider.enabled = true;
+                    animator.SetTrigger(movementAnimation);
+                });
+
+            }
+            
+            health--;
+            if (health <= 0 && !Dead)
+                OnDeath();
+        }
+
         private void OnDeath()
         {
+            SpawnMonitor.Instance.IncreaseScore(score);
+            ScoreHandler.Instance.ShowScore(transform.position.WithY(1.5f), score);
+            EnemySpawnController.Instance.aliveMinionsCount--;
+            
             Dead = true;
             grounded = true;
             StopMovement();
@@ -98,6 +131,9 @@ namespace Game.Scripts.Enemy
                     if (isBoss)
                     {
                         BossHealth.Instance.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                    }
+                    else
+                    {
                     }
 
                     var goldChance = UnityEngine.Random.Range(0, 100) <= 20;
@@ -132,28 +168,6 @@ namespace Game.Scripts.Enemy
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Trap"))
-            {
-                if (isBoss && !Attacking)
-                {
-                    grounded = true;
-                    BossHealth.Instance.UpdateHealth(health);
-                    StopMovement();
-                    var collider = gameObject.GetComponent<Collider>();
-                    collider.enabled = false;
-                    animator.SetTrigger("Death");
-                    DOVirtual.DelayedCall(2f, () =>
-                    {
-                        grounded = false;
-                        collider.enabled = true;
-                        animator.SetTrigger(movementAnimation);
-                    });
-
-                }
-                health--;
-                if (health <= 0)
-                    OnDeath();
-            }
 
             if (other.CompareTag("Player"))
             {

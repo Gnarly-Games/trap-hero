@@ -2336,9 +2336,10 @@ GameObject:
   - component: {fileID: 4934572155086354592}
   - component: {fileID: 4934572155086354591}
   - component: {fileID: 4934572155086354590}
+  - component: {fileID: 8238853672091291552}
   m_Layer: 0
   m_Name: ElectricTrap
-  m_TagString: Trap
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2422,11 +2423,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trap: {fileID: 4934572156806816194}
-  enableInterval: 1.5
   activeDuration: 0.5
-  onActivate:
-    m_PersistentCalls:
-      m_Calls: []
+  chargeDuration: 3
+--- !u!65 &8238853672091291552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934572155086354588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 18.75, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4934572156806816194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,6 +2450,7 @@ GameObject:
   - component: {fileID: 4934572156806816198}
   - component: {fileID: 4934572156806816197}
   - component: {fileID: 4934572156806816199}
+  - component: {fileID: 3799672675882792488}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Trap
@@ -2573,6 +2585,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 9.7, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3799672675882792488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934572156806816194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94491e8876b91be428d570718dca29a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 0}
 --- !u!1 &5005065206805299498
 GameObject:
   m_ObjectHideFlags: 0

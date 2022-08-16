@@ -107,9 +107,14 @@ MonoBehaviour:
   moveSpeed: 1.5
   mesh: {fileID: 5860356319647183788}
   enemyRigidbody: {fileID: 4253116189675440506}
-  animator: {fileID: 6762962793357768842}
+  attackInterval: 0.5
+  score: 30
+  scoreCanvas: {fileID: 0}
+  scoreText: {fileID: 0}
+  billboard: {fileID: 0}
   deathAudio: {fileID: 2611504472361937768}
   Dead: 0
+  animator: {fileID: 6762962793357768842}
   Attacking: 0
   movementAnimation: Running
   health: 0
