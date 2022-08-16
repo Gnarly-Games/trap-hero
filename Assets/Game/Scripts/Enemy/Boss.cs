@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Game.Scripts.Core;
 using Game.Scripts.Enemy;
 using UnityEngine.UI;
 
@@ -101,9 +102,9 @@ public class Boss : MonoBehaviour
     }
     private void Update()
     {
+        if (!GameManager.Instance.isGameRunning) return;
         
         DashAttack();
-
     }
 
 }

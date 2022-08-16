@@ -1,5 +1,4 @@
 using System.Collections;
-using Game.Scripts.Helpers.Pooling;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +15,8 @@ namespace Game.Scripts.Enemy
         [SerializeField] private GameObject heartPrefab;
         private int _currentSpawnRate;
         private int spawnId;
+
+        private bool _shouldSpawn;
         
         EnemyController bossController;
         
@@ -26,16 +27,22 @@ namespace Game.Scripts.Enemy
             {
                 SpawnEnemy();
             }
-            
+
+            _shouldSpawn = true;
             StartCoroutine(SpawnEnemies());
+        }
+
+        public void StopSpawning()
+        {
+            _shouldSpawn = false;
         }
 
         private IEnumerator SpawnEnemies()
         {
-            while (true)
+            while (_shouldSpawn)
             {
                 yield return new WaitForSeconds(interval);
-
+                
                 var amount = Mathf.Min(_currentSpawnRate, spawnCount);
                 for (var i = 0; i < amount; i++)
                 {
@@ -54,8 +61,11 @@ namespace Game.Scripts.Enemy
                 }
             }
         }
+        
         private void SpawnHeart()
         {
+            if (!_shouldSpawn) return;
+            
             var randomDirection = Random.insideUnitCircle.normalized;
             randomDirection *= Random.Range(4f, 5f);
 
@@ -77,6 +87,8 @@ namespace Game.Scripts.Enemy
 
         private void SpawnEnemy(bool boss=false)
         {
+            if (!_shouldSpawn) return;
+            
             var spawnPoint = Vector3.zero;
             var dist = Vector3.Distance(playerTransform.position, Vector3.zero);
             var randomDirection = Random.insideUnitCircle.normalized;

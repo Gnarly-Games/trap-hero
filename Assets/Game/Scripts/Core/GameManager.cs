@@ -21,6 +21,7 @@ namespace Game.Scripts.Core
         private void Awake() {
             Application.targetFrameRate = 60;
         }
+        
         private void Start()
         {
             onGameInitialized?.Invoke();
@@ -30,7 +31,7 @@ namespace Game.Scripts.Core
         {
             onLevelStarted?.Invoke();
             isGameRunning = true;
-            
+
             Timer.Instance.StartTimer();
         }
 
@@ -38,6 +39,7 @@ namespace Game.Scripts.Core
         {
             onLevelCompleted?.Invoke();
             onLevelEnded?.Invoke();
+
             Timer.Instance.StopTimer();
         }
 
@@ -45,6 +47,7 @@ namespace Game.Scripts.Core
         {
             onLevelFailed?.Invoke();
             onLevelEnded?.Invoke();
+
             Timer.Instance.StopTimer();
         }
 

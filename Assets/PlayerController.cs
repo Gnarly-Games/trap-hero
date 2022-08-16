@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Enemy;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource healthAudio;
 
     private Color _originalColor;
+    private bool _isDead;
 
     public int goldAmount;
 
@@ -31,8 +33,10 @@ public class PlayerController : MonoBehaviour
         _originalColor = meshRenderer.material.color;
     }
 
-    private void GetDamage()
+    public void GetDamage()
     {
+        if (_isDead) return;
+        
         health -= enemyDamage;
         healthBar.value = health / 100f;
         hitPanel.gameObject.SetActive(true);
@@ -44,11 +48,12 @@ public class PlayerController : MonoBehaviour
             });
         
         if (health > 0) return;
-
-        playerAnimator.SetBool("Running", false);
-        playerAnimator.SetBool("Death", true);
+        _isDead = true;
+        playerAnimator.SetTrigger("Death");
         joyStick.SetActive(false);
+        
         GameManager.Instance.onLevelFailed?.Invoke();
+        GameManager.Instance.isGameRunning = false;
     }
 
     private void CollectGold()
@@ -73,12 +78,14 @@ public class PlayerController : MonoBehaviour
             if(controller.Dead) return;
             GetDamage();
         }
+        
         if (other.CompareTag("Gold"))
         {
             CollectGold();
             coinAudio.Play();
             Destroy(other.gameObject);
         }
+        
         if (other.CompareTag("Heart"))
         {
             health = Math.Min(100, health+10);

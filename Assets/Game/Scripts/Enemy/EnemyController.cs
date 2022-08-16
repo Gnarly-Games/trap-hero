@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
@@ -14,25 +15,28 @@ namespace Game.Scripts.Enemy
         [SerializeField] private float moveSpeed;
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
-        public Animator animator;
+        [SerializeField] private float attackInterval;
+        
         [SerializeField] private AudioSource deathAudio;
 
-        private Transform _playerTransform;
+        private PlayerController _playerController;
 
         private Action _updatePool;
         
         private float _nextDirectionChange;
         public bool Dead;
+        public Animator animator;
 
         public bool Attacking;
         public string movementAnimation = "Running";
         public int health;
         public bool isBoss;
         public bool grounded;
+        private bool _shouldAttack;
         
         private void Start()
         {
-            _playerTransform = GameObject.FindWithTag("Player").transform;
+            _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
             GameManager.Instance.onLevelStarted.AddListener(EnableMove);
             GameManager.Instance.onLevelFailed.AddListener(DisableMove);
@@ -40,6 +44,8 @@ namespace Game.Scripts.Enemy
             if (GameManager.Instance.isGameRunning) EnableMove();
 
             isBoss = gameObject.GetComponent<Boss>() != null;
+
+            StartCoroutine(StartAttack());
         }
 
         private void Update()
@@ -52,7 +58,7 @@ namespace Game.Scripts.Enemy
             if (Attacking) return;
             if (grounded) return;
             
-            var targetPosition = _playerTransform.position;
+            var targetPosition = _playerController.transform.position;
 
             transform.SlowLookAt(targetPosition.WithY(transform.position.y), lookSpeed);
 
@@ -74,6 +80,7 @@ namespace Game.Scripts.Enemy
         {
             StopMovement();
             _updatePool -= Move;
+            animator.SetTrigger("DynIdle");
         }
 
         private void OnDeath()
@@ -107,6 +114,17 @@ namespace Game.Scripts.Enemy
 
         }
 
+        private IEnumerator StartAttack()
+        {
+            while (true)
+            {
+                yield return new WaitUntil(() => _shouldAttack);
+                _playerController.GetDamage();
+                
+                yield return new WaitForSeconds(attackInterval);
+            }
+        }
+
         void StopMovement()
         {
             enemyRigidbody.velocity = Vector3.zero;
@@ -114,27 +132,38 @@ namespace Game.Scripts.Enemy
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Trap")) return;
-
-            if (isBoss && !Attacking)
+            if (other.CompareTag("Trap"))
             {
-                grounded = true;
-                BossHealth.Instance.UpdateHealth(health);
-                StopMovement();
-                var collider = gameObject.GetComponent<Collider>();
-                collider.enabled = false;
-                animator.SetTrigger("Death");
-                DOVirtual.DelayedCall(2f, () =>
+                if (isBoss && !Attacking)
+                {
+                    grounded = true;
+                    BossHealth.Instance.UpdateHealth(health);
+                    StopMovement();
+                    var collider = gameObject.GetComponent<Collider>();
+                    collider.enabled = false;
+                    animator.SetTrigger("Death");
+                    DOVirtual.DelayedCall(2f, () =>
                     {
                         grounded = false;
                         collider.enabled = true;
                         animator.SetTrigger(movementAnimation);
                     });
 
+                }
+                health--;
+                if (health <= 0)
+                    OnDeath();
             }
-            health--;
-            if (health <= 0)
-                OnDeath();
+
+            if (other.CompareTag("Player"))
+            {
+                _shouldAttack = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player")) _shouldAttack = false;
         }
 
         #region Pool
