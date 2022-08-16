@@ -13,11 +13,13 @@ public class BossHealth : MonoBehaviour
     {
         Instance = this;
         healthBar = GetComponent<Slider>();
+        
     }
     public void SetHealth(int health)
     {
-        gameObject.SetActive(true);
+        GetComponent<CanvasGroup>().alpha = 1;
         _health = (float)health;
+        UpdateHealth(health);
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class BossHealth : MonoBehaviour
     {
         if (value <= 0)
         {
-            gameObject.SetActive(false);
+            GetComponent<CanvasGroup>().alpha = 0;
         }
         else
         {

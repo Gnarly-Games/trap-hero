@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b35ac938ccc24cbdc336146b9b3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: {fileID: 7853928070767733304, guid: fc3b864b8a5a6b8408cb98b2cf6d6782, type: 3}
+  gold: {fileID: 4094946194340295934, guid: f7ddd842380e6b943aa64b4039e81ea0, type: 3}
   lookSpeed: 4
   moveSpeed: 2
   mesh: {fileID: 8243988027736856075}
@@ -108,6 +108,11 @@ MonoBehaviour:
   animator: {fileID: 9144122258545499437}
   deathAudio: {fileID: 504756170224242383}
   Dead: 0
+  Attacking: 0
+  movementAnimation: Running
+  health: 0
+  isBoss: 0
+  grounded: 0
 --- !u!54 &-7477463257728652067
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
     public float attackRange;
     public float attackInterval;
     public GameObject jumpIndicatorPrefab;
-    private float _nextAttackTime;
+    public float nextAttackTime;
     private Rigidbody _rigidbody;
     private bool _isAttackState;
     private Vector3 _attackDirection;
@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour
     private EnemyController _monster;
     private GameObject _target;
     public BossHealth healthBar;
+
     private void Awake()
     {
         _monster = GetComponent<EnemyController>();
@@ -31,25 +32,31 @@ public class Boss : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _target = GameObject.FindGameObjectWithTag("Player");
         _monster.movementAnimation = "Walking";
-        _monster.health = 10;
+        _monster.health = 5;
+        healthBar = GameObject.FindObjectOfType<BossHealth>();
         healthBar.gameObject.SetActive(true);
         healthBar.SetHealth(_monster.health);
 
     }
-
-    void Destroy()
+    private void OnCollisionEnter(Collision other)
     {
-        
-    }
+        if (other.gameObject.CompareTag("Enemy")) {
+            Destroy(other.gameObject);
+            if(transform.localScale.x <=3) {
+                transform.localScale *= 1.05f;
+            }
+        };
+  
+    }  
 
     public void DashAttack()
     {
         var distance = Vector3.Distance(_target.transform.position, transform.position);
         if (distance <= attackRange)
         {
-            if (Time.time > _nextAttackTime)
+            if (Time.time > nextAttackTime)
             {
-                _nextAttackTime = Time.time + attackInterval;
+                nextAttackTime = Time.time + attackInterval;
                 _monster.Attacking = true;
                 var monsterPosition = _monster.transform.position;
                 monsterPosition.y = 0;
@@ -94,7 +101,7 @@ public class Boss : MonoBehaviour
     }
     private void Update()
     {
-
+        
         DashAttack();
 
     }

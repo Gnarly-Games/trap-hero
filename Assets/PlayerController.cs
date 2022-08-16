@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Heart"))
         {
-            health = 100;
+            health = Math.Min(100, health+10);
             healthAudio.Play();
             healthBar.value = health / 100f;
             Destroy(other.gameObject);
