@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using Game.Scripts.Enemy;
 using UnityEngine;
@@ -59,5 +60,13 @@ public class SphereTrap : MonoBehaviour
         if (!collision.gameObject.CompareTag("Enemy")) return;
         
         collision.gameObject.GetComponent<EnemyController>().GetDamage();  
+    }
+
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        if (rigidbody.velocity.magnitude < 1) return;
+        if (!collisionInfo.gameObject.CompareTag("Enemy")) return;
+        
+        collisionInfo.gameObject.GetComponent<EnemyController>().GetDamage(); 
     }
 }
