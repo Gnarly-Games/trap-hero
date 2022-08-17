@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1562546412981967624}
   - component: {fileID: 1562546412981967627}
   - component: {fileID: 1562546412981967670}
-  - component: {fileID: 1562546412981967671}
   - component: {fileID: 7422399974361471604}
   - component: {fileID: -7571686749909587399}
   m_Layer: 0
@@ -30,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562546412981967629}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
@@ -118,19 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!135 &1562546412981967671
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562546412981967629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7422399974361471604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1562546412981967670}
   audio: {fileID: -7571686749909587399}
+  activeColor: {r: 0.18431373, g: 0.6117647, b: 1, a: 1}
+  originalColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
+  trapRenderer: {fileID: 1562546412981967624}
 --- !u!82 &-7571686749909587399
 AudioSource:
   m_ObjectHideFlags: 0

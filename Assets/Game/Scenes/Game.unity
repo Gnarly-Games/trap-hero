@@ -1965,8 +1965,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: SphereTrap (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1562546412981967671, guid: b1768a83b6d32254882e1814009bd238, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1768a83b6d32254882e1814009bd238, type: 3}
 --- !u!1 &723986239
 GameObject:

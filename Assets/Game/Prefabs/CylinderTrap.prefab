@@ -144,6 +144,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 2215586810622969085}
   audio: {fileID: 5723530614926347212}
+  activeColor: {r: 0.1830188, g: 0.61131614, b: 1, a: 1}
+  originalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  trapRenderer: {fileID: 2215586810622969086}
 --- !u!1 &2215586810622969080
 GameObject:
   m_ObjectHideFlags: 0

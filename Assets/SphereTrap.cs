@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game.Scripts.Enemy;
 using UnityEngine;
 
@@ -6,6 +7,13 @@ public class SphereTrap : MonoBehaviour
     // Start is called before the first frame update
     public Rigidbody rigidbody;
     public AudioSource audio;
+
+    [SerializeField] private Color activeColor;
+    [SerializeField] private Color originalColor;
+    [SerializeField] private Renderer trapRenderer;
+
+    private bool _isTrapActive;
+    
     void Start()
     {
         audio.volume = 0;
@@ -16,6 +24,12 @@ public class SphereTrap : MonoBehaviour
     {
         if (rigidbody.velocity.magnitude >= 1)
         {
+            if (!_isTrapActive)
+            {
+                _isTrapActive = true;
+                trapRenderer.material.DOColor(activeColor, 0.25f);
+            }
+            
             if (!audio.isPlaying)
             {
                 audio.Play();
@@ -26,6 +40,12 @@ public class SphereTrap : MonoBehaviour
         }
         else
         {
+            if (_isTrapActive)
+            {
+                _isTrapActive = false;
+                trapRenderer.material.DOColor(originalColor, 0.25f);
+            }
+            
             if (audio.isPlaying)
             {
                 audio.Pause();
