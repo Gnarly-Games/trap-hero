@@ -145,9 +145,11 @@ namespace Game.Scripts.Enemy
 
         private IEnumerator StartAttack()
         {
-            while (true)
+            while (!Dead)
             {
                 yield return new WaitUntil(() => _shouldAttack);
+                
+                if (Dead) continue;
                 _playerController.GetDamage();
                 
                 yield return new WaitForSeconds(attackInterval);

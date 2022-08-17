@@ -10,13 +10,14 @@ public class SphereTrap : MonoBehaviour
     public AudioSource audio;
 
     [SerializeField] private Color activeColor;
-    [SerializeField] private Color originalColor;
     [SerializeField] private Renderer trapRenderer;
 
+    private Color _originalColor;
     private bool _isTrapActive;
     
     void Start()
     {
+        _originalColor = trapRenderer.material.color;
         audio.volume = 0;
     }
 
@@ -44,7 +45,7 @@ public class SphereTrap : MonoBehaviour
             if (_isTrapActive)
             {
                 _isTrapActive = false;
-                trapRenderer.material.DOColor(originalColor, 0.25f);
+                trapRenderer.material.DOColor(_originalColor, 0.25f);
             }
             
             if (audio.isPlaying)

@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer meshRenderer;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider healthBarBackground;
+    [SerializeField] private Image healthBarFill;
+    [SerializeField] private Color regenColor;
+    [SerializeField] private CanvasGroup healthBarCanvas;
     [SerializeField] private GameObject joyStick;
     [SerializeField] private Image hitPanel;
     [SerializeField] private AudioSource coinAudio;
     [SerializeField] private AudioSource healthAudio;
-
-    private Color _originalColor;
+    
+    private Color _originalBodyColor;
+    private Color _originalHealthColor;
     private bool _isDead;
 
     public int goldAmount;
@@ -29,21 +34,29 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.onLevelFailed.AddListener(() => playerCollider.enabled = false);
+
+        _originalHealthColor = healthBarFill.color;
         healthBar.value = health / 100f;
-        _originalColor = meshRenderer.material.color;
+        healthBarCanvas.alpha = 0f;
+        
+        _originalBodyColor = meshRenderer.material.color;
     }
 
     public void GetDamage()
     {
+        healthBarCanvas.DOFade(1, 0.25f);
         if (_isDead) return;
         
         health -= enemyDamage;
+        
         healthBar.value = health / 100f;
+        DOVirtual.DelayedCall(0.2f, () => healthBarBackground.DOValue(healthBar.value, 0.25f));
+        
         hitPanel.gameObject.SetActive(true);
         meshRenderer.material.DOColor(Color.white, 0.1f)
             .SetLoops(3)
             .OnComplete(() => {
-                meshRenderer.material.DOColor(_originalColor, 0.1f);
+                meshRenderer.material.DOColor(_originalBodyColor, 0.1f);
                 hitPanel.gameObject.SetActive(false);
             });
         
@@ -89,10 +102,17 @@ public class PlayerController : MonoBehaviour
         
         if (other.CompareTag("Heart"))
         {
+            healthBarFill.DOColor(regenColor, 0.2f)
+                .OnComplete(() => healthBarFill.DOColor(_originalHealthColor, 0.2f));
+            
             health = Math.Min(100, health+10);
             healthAudio.Play();
             healthBar.value = health / 100f;
+            healthBarBackground.value = healthBar.value;
+            
             Destroy(other.gameObject);
+            
+            if (health == 100) healthBarCanvas.DOFade(0, 0.25f);
         }
     }
 }
