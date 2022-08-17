@@ -5,10 +5,7 @@ using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
 using Game.Scripts.Score;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Serialization;
 
 namespace Game.Scripts.Enemy
 {
@@ -114,7 +111,7 @@ namespace Game.Scripts.Enemy
 
         private void OnDeath()
         {
-            SpawnMonitor.Instance.IncreaseScore(score);
+            ScoreHandler.Instance.IncreaseScore(score);
             ScoreHandler.Instance.ShowScore(transform.position.WithY(1.5f), score);
             EnemySpawnController.Instance.aliveMinionsCount--;
             
@@ -124,16 +121,12 @@ namespace Game.Scripts.Enemy
             animator.SetTrigger("Death");
             deathAudio.Play();
             gameObject.GetComponent<Collider>().isTrigger = true;
-            SpawnMonitor.Instance.RecordDead();
             mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>
                 {
                     if (isBoss)
                     {
                         BossHealth.Instance.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-                    }
-                    else
-                    {
                     }
 
                     var goldChance = UnityEngine.Random.Range(0, 100) <= 20;

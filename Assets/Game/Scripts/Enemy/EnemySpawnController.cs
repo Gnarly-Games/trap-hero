@@ -98,7 +98,6 @@ namespace Game.Scripts.Enemy
             }
             
             spawnedEnemy.gameObject.transform.position = spawnPoint;
-            SpawnMonitor.Instance.RecordSpawn();
         }
 
         private Vector3 GetRandomPosition()

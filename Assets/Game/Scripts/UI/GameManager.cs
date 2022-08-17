@@ -31,24 +31,18 @@ namespace Game.Scripts.Core
         {
             onLevelStarted?.Invoke();
             isGameRunning = true;
-
-            Timer.Instance.StartTimer();
         }
 
         public void OnLevelCompleted()
         {
             onLevelCompleted?.Invoke();
             onLevelEnded?.Invoke();
-
-            Timer.Instance.StopTimer();
         }
 
         public void OnLevelFailed()
         {
             onLevelFailed?.Invoke();
             onLevelEnded?.Invoke();
-
-            Timer.Instance.StopTimer();
         }
 
         public static void ReloadScene()
