@@ -132,7 +132,6 @@ MonoBehaviour:
   rigidbody: {fileID: 1562546412981967670}
   audio: {fileID: -7571686749909587399}
   activeColor: {r: 0.18431373, g: 0.6117647, b: 1, a: 1}
-  originalColor: {r: 0.7921569, g: 0.7921569, b: 0.7921569, a: 1}
   trapRenderer: {fileID: 1562546412981967624}
 --- !u!82 &-7571686749909587399
 AudioSource:
@@ -157,7 +156,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

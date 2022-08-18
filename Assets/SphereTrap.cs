@@ -1,6 +1,7 @@
 using System;
 using DG.Tweening;
 using Game.Scripts.Enemy;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 
 public class SphereTrap : MonoBehaviour
@@ -21,7 +22,6 @@ public class SphereTrap : MonoBehaviour
         audio.volume = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (rigidbody.velocity.magnitude >= 1)

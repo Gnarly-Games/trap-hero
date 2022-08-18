@@ -107,9 +107,6 @@ MonoBehaviour:
   enemyRigidbody: {fileID: -7477463257728652067}
   attackInterval: 0.5
   score: 5
-  scoreCanvas: {fileID: 0}
-  scoreText: {fileID: 0}
-  billboard: {fileID: 0}
   deathAudio: {fileID: 504756170224242383}
   Dead: 0
   animator: {fileID: 9144122258545499437}
@@ -171,7 +168,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

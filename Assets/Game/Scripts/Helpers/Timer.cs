@@ -1,4 +1,5 @@
 using System.Collections;
+using Game.Scripts.Core;
 using Game.Scripts.Score;
 using UnityEngine;
 
@@ -8,12 +9,11 @@ namespace Game.Scripts.Helpers
     {
         private void Start()
         {
-            StartCoroutine(IncreaseScore());
         }
 
         private IEnumerator IncreaseScore()
         {
-            while (true)
+            while (GameManager.Instance.isGameRunning)
             {
                 yield return new WaitForSeconds(1f);
                 ScoreHandler.Instance.IncreaseScore(1);

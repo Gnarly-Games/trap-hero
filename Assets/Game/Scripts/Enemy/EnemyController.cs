@@ -5,6 +5,7 @@ using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
 using Game.Scripts.Score;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 
 namespace Game.Scripts.Enemy
@@ -120,6 +121,7 @@ namespace Game.Scripts.Enemy
             StopMovement();
             animator.SetTrigger("Death");
             deathAudio.Play();
+            MMVibrationManager.Haptic(HapticTypes.LightImpact);
             gameObject.GetComponent<Collider>().isTrigger = true;
             mesh.material.DOColor(Color.white, 0.1f).SetLoops(2, LoopType.Yoyo)
                 .OnComplete(() =>

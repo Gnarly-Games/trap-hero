@@ -58,8 +58,8 @@ namespace Game.Scripts.Score
         {
             if (currentScore >= highestScoreOnRanking) return 0.98f;
             
-            var normalizedValue = (float) currentScore / highestScoreOnRanking;
-            var percentage = _inverseRankingCurve.Evaluate(normalizedValue);
+            var normalizedValue = currentScore / (float)highestScoreOnRanking;
+            var percentage = rankingCurve.Evaluate(normalizedValue);
             
 
             return percentage;
