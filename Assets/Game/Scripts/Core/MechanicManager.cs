@@ -55,7 +55,7 @@ namespace Game.Scripts.Core
         public void EnableInput()
         {
             if (activeMechanic == null) return;
-            
+
             _onUpdate += HandleTouch;
             activeMechanic.OnMechanicEnabled();
         }
@@ -64,7 +64,7 @@ namespace Game.Scripts.Core
         public void DisableInput()
         {
             if (activeMechanic == null) return;
-            
+
             _onUpdate -= HandleTouch;
             activeMechanic.OnMechanicDisabled();
         }

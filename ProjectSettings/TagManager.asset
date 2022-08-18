@@ -7,6 +7,7 @@ TagManager:
   - Trap
   - Enemy
   - Gold
+  - Heart
   layers:
   - Default
   - TransparentFX

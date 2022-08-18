@@ -40,7 +40,6 @@ namespace Game.Scripts.Helpers.Pooling
 
                     poolObject.OnCreated();
                 }
-
             }
         }
 
@@ -53,13 +52,12 @@ namespace Game.Scripts.Helpers.Pooling
                 var poolObject = pools[i].PooledObjects.Dequeue() as T;
                 pools[i].PooledObjects.Enqueue(poolObject);
                 if (poolObject == null) continue;
-                
+
                 poolObject.OnSpawn();
                 return poolObject;
             }
-            
+
             return default;
         }
-
     }
 }
