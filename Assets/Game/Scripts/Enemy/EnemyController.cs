@@ -12,7 +12,6 @@ namespace Game.Scripts.Enemy
 {
     public class EnemyController : PoolObject
     {
-        [SerializeField] private GameObject gold;
         [SerializeField] private float lookSpeed;
         [SerializeField] private float moveSpeed;
         [SerializeField] private SkinnedMeshRenderer mesh;
@@ -27,10 +26,10 @@ namespace Game.Scripts.Enemy
         private Action _updatePool;
         
         private float _nextDirectionChange;
-        public bool Dead;
+        public bool dead;
         public Animator animator;
 
-        public bool Attacking;
+        public bool attacking;
         public string movementAnimation = "Running";
         public int health;
         public bool isBoss;
@@ -58,7 +57,7 @@ namespace Game.Scripts.Enemy
 
         private void Move()
         {
-            if (Attacking) return;
+            if (attacking) return;
             if (grounded) return;
             
             var targetPosition = _playerController.transform.position;
@@ -88,7 +87,7 @@ namespace Game.Scripts.Enemy
 
         public void GetDamage()
         {
-            if (isBoss && !Attacking)
+            if (isBoss && !attacking)
             {
                 grounded = true;
                 BossHealth.Instance.UpdateHealth(health);
@@ -106,7 +105,7 @@ namespace Game.Scripts.Enemy
             }
             
             health--;
-            if (health <= 0 && !Dead)
+            if (health <= 0 && !dead)
                 OnDeath();
         }
 
@@ -116,7 +115,7 @@ namespace Game.Scripts.Enemy
             ScoreHandler.Instance.ShowScore(transform.position.WithY(1.5f), score);
             EnemySpawnController.Instance.aliveMinionsCount--;
             
-            Dead = true;
+            dead = true;
             grounded = true;
             StopMovement();
             animator.SetTrigger("Death");
@@ -131,27 +130,39 @@ namespace Game.Scripts.Enemy
                         BossHealth.Instance.gameObject.GetComponent<CanvasGroup>().alpha = 0;
                     }
 
-                    var goldChance = UnityEngine.Random.Range(0, 100) <= 20;
-                    if(goldChance)  {
-                        var spawnedGold = Instantiate(gold);
-                        spawnedGold.transform.position = transform.position;
+                    var heartChance = UnityEngine.Random.Range(0, 100) <= 20;
+                    if(heartChance)
+                    {
+                        var heart = PoolManager.Instance.GetObject<HeartController>();
+                        heart.transform.position = transform.position;
                     }
 
                     StopMovement();
                     var c = Color.gray;
                     mesh.material.color = c;
-                    Destroy(gameObject, 1f);
+
+                    DOVirtual.DelayedCall(1f, () =>
+                    {
+                        gameObject.SetActive(false);
+                        Reset();
+                    });
                 });
 
         }
 
+        private void Reset()
+        {
+            animator.SetTrigger("DynIdle");
+            mesh.material.color = Color.white;
+        }
+
         private IEnumerator StartAttack()
         {
-            while (!Dead)
+            while (!dead)
             {
                 yield return new WaitUntil(() => _shouldAttack);
                 
-                if (Dead) continue;
+                if (dead) continue;
                 _playerController.GetDamage();
                 
                 yield return new WaitForSeconds(attackInterval);

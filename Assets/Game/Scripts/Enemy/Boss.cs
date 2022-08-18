@@ -58,7 +58,7 @@ public class Boss : MonoBehaviour
             if (Time.time > nextAttackTime)
             {
                 nextAttackTime = Time.time + attackInterval;
-                _monster.Attacking = true;
+                _monster.attacking = true;
                 var monsterPosition = _monster.transform.position;
                 monsterPosition.y = 0;
                 _attackDirection = (_target.transform.position - monsterPosition).normalized;
@@ -85,14 +85,14 @@ public class Boss : MonoBehaviour
                         {
                             _isAttackState = false;
                             _monster.animator.SetTrigger(_monster.movementAnimation);
-                            _monster.Attacking = false;
+                            _monster.attacking = false;
                         });
                 });
             }
         }
 
 
-        if (_monster.Attacking)
+        if (_monster.attacking)
         {
             if (jumpIndicatorPrefab)
             {

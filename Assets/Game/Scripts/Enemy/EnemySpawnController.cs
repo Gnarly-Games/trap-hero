@@ -1,4 +1,5 @@
 using System.Collections;
+using Game.Scripts.Helpers.Pooling;
 using MyBox;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,24 +10,20 @@ namespace Game.Scripts.Enemy
     {
         [SerializeField] private Transform playerTransform;
         [SerializeField] private float power;
-        [SerializeField] private EnemyController enemyPrefab;
-        [SerializeField] private  EnemyController bossPrefab;
         [SerializeField] private float spawnCheckOffset;
 
         [SerializeField] private float minionSpawnInterval;
         [SerializeField] private float increaseMinionLimitInterval;
 
-        [SerializeField] private GameObject heartPrefab;
+        private int _spawnCap = 250;
         private int _currentSpawnRate;
-        private int spawnId;
+        private int _spawnId;
 
         private bool _shouldSpawn;
 
         public int aliveMinionsCount;
         private int _minionLimit = 1;
-        
-        EnemyController bossController;
-        
+
         public void StartSpawning()
         {
             _shouldSpawn = true;
@@ -45,6 +42,8 @@ namespace Game.Scripts.Enemy
             while (true)
             {
                 yield return new WaitForSeconds(increaseMinionLimitInterval);
+                if (_minionLimit >= _spawnCap) break;
+                
                 _minionLimit++;
             }
         }
@@ -60,43 +59,14 @@ namespace Game.Scripts.Enemy
             }
         }
 
-        private void SpawnHeart()
-        {
-            if (!_shouldSpawn) return;
-            
-            var randomDirection = Random.insideUnitCircle.normalized;
-            randomDirection *= Random.Range(4f, 5f);
-
-            var spawnPoint = playerTransform.position;
-            spawnPoint.x += randomDirection.x;
-            spawnPoint.z += randomDirection.y;
-            spawnPoint.y = 0f;
-            
-            var dist = Vector3.Distance(playerTransform.position, Vector3.zero);
-
-            if(dist > 7) {
-                spawnPoint = Random.insideUnitCircle.normalized * 5f;
-                spawnPoint.y = 0f;
-            } 
-
-            var heart = Instantiate(heartPrefab);;
-            heart.gameObject.transform.position = spawnPoint;
-        }
-
-        private void SpawnEnemy(bool boss=false)
+        private void SpawnEnemy()
         {
             if (!_shouldSpawn) return;
 
             aliveMinionsCount++;
 
             var spawnPoint = GetRandomPosition();
-            var spawnedEnemyType = boss ? bossPrefab : enemyPrefab;
-            
-            var spawnedEnemy = Instantiate(spawnedEnemyType);
-            if(boss) {
-                bossController = spawnedEnemy;
-            }
-            
+            var spawnedEnemy = PoolManager.Instance.GetObject<EnemyController>();
             spawnedEnemy.gameObject.transform.position = spawnPoint;
         }
 

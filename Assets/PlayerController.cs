@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Enemy;
@@ -89,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy")) 
         {
             var controller = other.gameObject.GetComponent<EnemyController>();
-            if(controller.Dead) return;
+            if(controller.dead) return;
             GetDamage();
         }
         
@@ -110,7 +109,7 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health / 100f;
             healthBarBackground.value = healthBar.value;
             
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             
             if (health == 100) healthBarCanvas.DOFade(0, 0.25f);
         }
