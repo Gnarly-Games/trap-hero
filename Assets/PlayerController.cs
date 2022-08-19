@@ -2,8 +2,6 @@ using System;
 using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Enemy;
-using Game.Scripts.Score;
-using Game.Scripts.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.onLevelCompleted.AddListener(() => playerCollider.enabled = false);
+        GameManager.Instance.onLevelFailed.AddListener(() => playerCollider.enabled = false);
 
         _originalHealthColor = healthBarFill.color;
         healthBar.value = health / 100f;
@@ -62,12 +60,11 @@ public class PlayerController : MonoBehaviour
             });
         
         if (health > 0) return;
-        
         _isDead = true;
         playerAnimator.SetTrigger("Death");
         joyStick.SetActive(false);
         
-        GameManager.Instance.onLevelCompleted?.Invoke();
+        GameManager.Instance.onLevelFailed?.Invoke();
         GameManager.Instance.isGameRunning = false;
     }
 

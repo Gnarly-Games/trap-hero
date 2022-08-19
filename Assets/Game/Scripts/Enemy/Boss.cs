@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using Game.Scripts.Core;
 using Game.Scripts.Enemy;
-using Game.Scripts.UI;
 using UnityEngine.UI;
 
 public interface IAttackType
