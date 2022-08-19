@@ -1,4 +1,5 @@
 using Game.Scripts.Core;
+using Game.Scripts.UI;
 using UnityEngine;
 
 namespace Game.TestTools.GameFlow
@@ -15,7 +16,7 @@ namespace Game.TestTools.GameFlow
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                GameManager.Instance.OnLevelCompleted();
+                // GameManager.Instance.OnLevelCompleted();
             }
         }
 
@@ -23,7 +24,7 @@ namespace Game.TestTools.GameFlow
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                GameManager.Instance.OnLevelFailed();
+                GameManager.Instance.OnLevelCompleted();
             }
         }
     }

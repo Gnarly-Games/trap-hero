@@ -5,6 +5,7 @@ using Game.Scripts.Core;
 using Game.Scripts.Helpers.Extensions;
 using Game.Scripts.Helpers.Pooling;
 using Game.Scripts.Score;
+using Game.Scripts.UI;
 using MoreMountains.NiceVibrations;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace Game.Scripts.Enemy
             _playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
             GameManager.Instance.onLevelStarted.AddListener(EnableMove);
-            GameManager.Instance.onLevelFailed.AddListener(DisableMove);
+            GameManager.Instance.onLevelCompleted.AddListener(DisableMove);
 
             if (GameManager.Instance.isGameRunning) EnableMove();
 

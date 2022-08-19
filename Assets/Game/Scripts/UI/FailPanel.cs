@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Game.Scripts.Score;
 using Game.Scripts.UI.Base;
+using GameAnalyticsSDK;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,8 +26,11 @@ namespace Game.Scripts.UI
             var percentage = ScoreHandler.Instance.GetPercentage();
             PercentageRoundAnimation(percentage);
             percentageSlider.DOFillAmount(percentage, 1f);
+
+            if (ScoreHandler.Instance.isNewHighScore) return;
             
-            if (ScoreHandler.Instance.isNewHighScore) newHighScoreText.SetActive(true);
+            newHighScoreText.SetActive(true);
+            GameAnalytics.NewDesignEvent("high_score", ScoreHandler.Instance.bestScore);
         }
 
         private void PercentageRoundAnimation(float percentage)

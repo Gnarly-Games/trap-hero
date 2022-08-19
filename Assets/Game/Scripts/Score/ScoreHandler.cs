@@ -1,4 +1,3 @@
-using System;
 using Game.Scripts.UI;
 using MyBox;
 using UnityEngine;
@@ -61,7 +60,6 @@ namespace Game.Scripts.Score
             var normalizedValue = currentScore / (float)highestScoreOnRanking;
             var percentage = rankingCurve.Evaluate(normalizedValue);
             
-
             return percentage;
         }
 

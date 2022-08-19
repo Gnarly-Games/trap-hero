@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using Game.Scripts.UI.Base;
+using GameAnalyticsSDK;
 using TMPro;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace Game.Scripts.UI
             
         private int _currentScore;
         private int _targetScore;
+
+        private int _level;
 
         public override void Start()
         {
@@ -41,6 +44,7 @@ namespace Game.Scripts.UI
                 scoreText.text = _currentScore.ToString();
 
                 if (_currentScore % milestone != 0) continue;
+
                 scoreText.transform.DOScale(1.2f, 0.25f)
                     .OnComplete(() => scoreText.transform.DOScale(1f, 0.25f));
                 scoreText.DOColor(highlightColor, 0.25f)
