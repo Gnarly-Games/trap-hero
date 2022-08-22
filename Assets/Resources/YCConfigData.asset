@@ -21,8 +21,8 @@ MonoBehaviour:
   ABSamples: []
   ABDebugLog: 1
   BannerDisplayOnInit: 0
-  BannerDisplayOnInitEditor: 1
-  InterstitialInterval: 20
+  BannerDisplayOnInitEditor: 0
+  InterstitialInterval: 0
   activeLogs: 1
   Name: Trap Hero
   FbAppId: 666541804307253
