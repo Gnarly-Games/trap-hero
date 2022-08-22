@@ -9,6 +9,7 @@ namespace Game.Scripts.UI
     public class InGamePanel : UIPanel
     {
         public TMP_Text scoreText;
+        public CanvasGroup inGameDebug;
 
         [SerializeField] private Color highlightColor;
         [SerializeField] private Color originalColor;
@@ -18,6 +19,7 @@ namespace Game.Scripts.UI
             
         private int _currentScore;
         private int _targetScore;
+        private int _clickCount;
 
         public override void Start()
         {
@@ -28,6 +30,15 @@ namespace Game.Scripts.UI
         public void UpdateScoreValue(int score)
         {
             _targetScore = score;
+        }
+
+        public void IncreaseClickCount()
+        {
+            _clickCount++;
+            if (_clickCount == 10)
+            {
+                inGameDebug.alpha = 1f;
+            }
         }
 
         private IEnumerator UpdateScoreText()

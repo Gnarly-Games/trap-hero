@@ -1,5 +1,5 @@
-using System;
 using Game.Scripts.UI;
+using GameAnalyticsSDK;
 using MyBox;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Game.Scripts.Score
         [SerializeField] private InGamePanel inGamePanel;
 
         private const string SerializeKey = "Score";
-        
+
         private AnimationCurve _inverseRankingCurve;
 
         private void Start()
@@ -46,7 +46,9 @@ namespace Game.Scripts.Score
             
             bestScore = currentScore;
             PlayerPrefs.SetInt(SerializeKey, bestScore);
+            GameAnalytics.NewDesignEvent("high_score", bestScore);
             isNewHighScore = true;
+            
         }
 
         private void Load()
