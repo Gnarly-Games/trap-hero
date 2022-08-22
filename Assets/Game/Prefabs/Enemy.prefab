@@ -100,17 +100,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b35ac938ccc24cbdc336146b9b3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: {fileID: 4094946194340295934, guid: f7ddd842380e6b943aa64b4039e81ea0, type: 3}
   lookSpeed: 4
   moveSpeed: 2
+  heartPrefab: {fileID: 4094946194340295929, guid: f7ddd842380e6b943aa64b4039e81ea0, type: 3}
   mesh: {fileID: 8243988027736856075}
   enemyRigidbody: {fileID: -7477463257728652067}
   attackInterval: 0.5
   score: 5
   deathAudio: {fileID: 504756170224242383}
-  Dead: 0
+  dead: 0
   animator: {fileID: 9144122258545499437}
-  Attacking: 0
+  attacking: 0
   movementAnimation: Running
   health: 0
   isBoss: 0

@@ -10,10 +10,11 @@ using UnityEngine;
 
 namespace Game.Scripts.Enemy
 {
-    public class EnemyController : PoolObject
+    public class EnemyController : MonoBehaviour
     {
         [SerializeField] private float lookSpeed;
         [SerializeField] private float moveSpeed;
+        [SerializeField] private Transform heartPrefab;
         [SerializeField] private SkinnedMeshRenderer mesh;
         [SerializeField] private Rigidbody enemyRigidbody;
         [SerializeField] private float attackInterval;
@@ -133,7 +134,7 @@ namespace Game.Scripts.Enemy
                     var heartChance = UnityEngine.Random.Range(0, 100) <= 20;
                     if(heartChance)
                     {
-                        var heart = PoolManager.Instance.GetObject<HeartController>();
+                        var heart = Instantiate(heartPrefab);
                         heart.transform.position = transform.position;
                     }
 
@@ -143,17 +144,10 @@ namespace Game.Scripts.Enemy
 
                     DOVirtual.DelayedCall(1f, () =>
                     {
-                        gameObject.SetActive(false);
-                        Reset();
+                        Destroy(gameObject);
                     });
                 });
 
-        }
-
-        private void Reset()
-        {
-            animator.SetTrigger("DynIdle");
-            mesh.material.color = Color.white;
         }
 
         private IEnumerator StartAttack()
@@ -187,24 +181,5 @@ namespace Game.Scripts.Enemy
         {
             if (other.CompareTag("Player")) _shouldAttack = false;
         }
-
-        #region Pool
-
-        public override void OnDeactivate()
-        {
-            gameObject.SetActive(false);
-        }
-
-        public override void OnSpawn()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public override void OnCreated()
-        {
-            OnDeactivate();
-        }
-
-        #endregion
     }
 }

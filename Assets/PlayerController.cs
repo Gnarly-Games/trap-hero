@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health / 100f;
             healthBarBackground.value = healthBar.value;
             
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
             
             if (health == 100) healthBarCanvas.DOFade(0, 0.25f);
         }

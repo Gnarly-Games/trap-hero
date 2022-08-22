@@ -1,5 +1,4 @@
 using System.Collections;
-using Game.Scripts.Helpers.Pooling;
 using MyBox;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,6 +11,7 @@ namespace Game.Scripts.Enemy
         [SerializeField] private float power;
         [SerializeField] private float spawnCheckOffset;
 
+        [SerializeField] private Transform enemyPrefab;
         [SerializeField] private float minionSpawnInterval;
         [SerializeField] private float increaseMinionLimitInterval;
 
@@ -66,7 +66,7 @@ namespace Game.Scripts.Enemy
             aliveMinionsCount++;
 
             var spawnPoint = GetRandomPosition();
-            var spawnedEnemy = PoolManager.Instance.GetObject<EnemyController>();
+            var spawnedEnemy = Instantiate(enemyPrefab);
             spawnedEnemy.gameObject.transform.position = spawnPoint;
         }
 
