@@ -515,11 +515,9 @@ MonoBehaviour:
       shown: 0
     - name: PlayerController
       shown: 0
-    - name: SpawnMonitor
+    - name: ScoreCanvas
       shown: 0
     - name: SphereTrap
-      shown: 0
-    - name: Timer
       shown: 0
     - name: TrapUnlockPoint
       shown: 0
@@ -528,6 +526,8 @@ MonoBehaviour:
     - name: Rotate
       shown: 0
     - name: Test
+      shown: 0
+    - name: HeartController
       shown: 0
     - name: FailPanel
       shown: 0
@@ -541,9 +541,15 @@ MonoBehaviour:
       shown: 0
     - name: TrapController
       shown: 0
+    - name: ScoreHandler
+      shown: 0
+    - name: ScoreObject
+      shown: 0
     - name: JoystickMovementMechanic
       shown: 0
     - name: Mechanic
+      shown: 0
+    - name: Timer
       shown: 0
     - name: CanvasFixer
       shown: 0
@@ -557,8 +563,6 @@ MonoBehaviour:
       shown: 0
     - name: EnemySpawnController
       shown: 0
-    - name: GameManager
-      shown: 0
     - name: Level
       shown: 0
     - name: LevelManager
@@ -568,6 +572,8 @@ MonoBehaviour:
     - name: UIManager
       shown: 0
     - name: VibrationHandler
+      shown: 0
+    - name: GameManager
       shown: 0
     - name: LevelSaveHandler
       shown: 0
@@ -1069,8 +1075,6 @@ MonoBehaviour:
       shown: 0
     - name: MMFeedbackRadioSignal
       shown: 0
-    - name: RecorderBindings
-      shown: 0
     - name: TCP2_Demo_InvertedMaskImage
       shown: 0
     - name: TCP2_Demo_AutoRotate
@@ -1094,6 +1098,8 @@ MonoBehaviour:
     - name: TCP2_Demo_PBS_View
       shown: 0
     - name: TCP2_Demo_View
+      shown: 0
+    - name: RecorderBindings
       shown: 0
     - name: PixelPerfectCamera
       shown: 0
@@ -1692,5 +1698,5 @@ MonoBehaviour:
     - name: DOTweenComponent
       shown: 0
     customComponents: []
-    unityVersion: 2021.3.2f1
+    unityVersion: 2021.3.15f1
     isDirty: 0
